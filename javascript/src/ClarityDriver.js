@@ -3,8 +3,8 @@
 class ClarityDriver {
 
 	constructor(settings) {
-		log("creating Clarity driver instance with settings: ");
-		log(settings);
+		this.log("creating Clarity driver instance with settings: ");
+		this.log(settings);
 		this.settings = settings;
 	}
 
@@ -13,11 +13,11 @@ class ClarityDriver {
 	}
 
 	login(email, password) {
-		log(`logging in to Clarity with email: ${email} and password: ${password}`);
+		this.log(`logging in to Clarity with email: ${email} and password: ${password}`);
 	}
 
 	logout() {
-		log(`logging out of Clarity`);
+		this.log(`logging out of Clarity`);
 	}
 
 	get_user_settings() {}
