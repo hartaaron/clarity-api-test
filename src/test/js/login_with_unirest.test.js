@@ -1,6 +1,9 @@
 "use strict";
 
-var token = require("../src/requests/token.js");
+var baseDir = process.env.PWD;
+
+var token = require(baseDir + "src/main/js/clarity/requests/token.js");
+var settings = require(baseDir + "src/test/resources/settings.json");
 
 describe('clarity', ()=> {
 

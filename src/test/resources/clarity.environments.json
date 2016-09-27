@@ -1,0 +1,37 @@
+{
+	"environments" : {
+		"stage" : {
+			"baseUrl" : "https://clarity-stg.hart.com",
+			"apiPath" :  "/api/v1",
+			"mmPath" : "/mm/v2",
+			"users" : {
+				"basic" : {
+					"username" : "clarity-external-testing@hart.com",
+					"password" : "Cl@rity1",
+				}
+			}
+				
+		},
+		"stage-tw" : {
+			"baseUrl" : "https://clarity-stg-tw.hart.com",
+			"apiPath" :  "/api/v1",
+			"mmPath" : "/mm/v2"
+		},
+		"test" : {
+			"baseUrl" : "https://clarity-tst.hart.com",
+			"apiPath" :  "/api/v1",
+			"mmPath" : "/mm/v2",
+			"users" : {
+				"basic" : {
+					"username" : "clarity-external-testing@hart.com",
+					"password" : "Cl@rity1",
+				}
+			}
+		},
+		"dev" : {
+			"baseUrl" : "https://clarity-dev.hart.com/",
+			"apiPath" :  "/api/v3",
+			"mmPath" : "/mm/v2"
+		},
+	}
+}
