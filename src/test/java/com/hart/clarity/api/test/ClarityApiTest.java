@@ -13,7 +13,7 @@ import org.junit.rules.TestName;
 
 import static io.restassured.RestAssured.given;
 
-public class ClarityApiTest
+public abstract class ClarityApiTest
 {
 	@Rule
 	public TestName testName = new TestName();
@@ -24,7 +24,7 @@ public class ClarityApiTest
 	SoftAssertions check = new SoftAssertions();
 
 	Environment env;
-	LoginCredentials validUser;
+	LoginCredentials validLoginCredentials;
 
 	RequestSpecification jsonRequest;
 	RequestSpecification clarityRequest;
@@ -57,9 +57,9 @@ public class ClarityApiTest
 			System.out.println("--- need to set system property: CLARITY_USER_EMAIL");
 		}
 
-		validUser = new LoginCredentials();
-		validUser.email = email;
-		validUser.password = password;
+		validLoginCredentials = new LoginCredentials();
+		validLoginCredentials.email = email;
+		validLoginCredentials.password = password;
 
 		// create base request and set default headers for using JSON
 		jsonRequest = given().log().all()
