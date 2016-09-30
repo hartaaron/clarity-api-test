@@ -1,7 +1,7 @@
-package clarity.api.endpoints;
+package api.endpoints;
 
 import com.google.gson.Gson;
-import clarity.api.model.LoginCredentials;
+import api.model.LoginCredentials;
 
 import java.net.MalformedURLException;
 import java.net.URL;

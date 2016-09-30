@@ -9,19 +9,19 @@ public class LoginSteps
 	@Given("^a valid user with username \"([^\"]*)\" and password \"([^\"]*)\"$")
 	public void a_valid_user_with_username_and_password(String arg1, String arg2) throws Throwable
 	{
-		System.out.println("...I have a valid user");
+		System.out.println("Given I have a valid user.\n");
 	}
 
 	@When("^I login to Clarity$")
 	public void i_login_to_Clarity() throws Throwable
 	{
-		System.out.println("I log in to Clarity");
+		System.out.println("When I log in to Clarity.");
 	}
 
 	@Then("^I should be logged in to Clarity$")
 	public void i_should_be_logged_in_to_Clarity() throws Throwable
 	{
-		System.out.println("I am logged in");
+		System.out.println("Then I am logged in.");
 	}
 
 }

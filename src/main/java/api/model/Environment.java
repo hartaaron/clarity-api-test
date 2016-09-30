@@ -1,4 +1,4 @@
-package clarity.api.model;
+package api.model;
 
 public class Environment
 {

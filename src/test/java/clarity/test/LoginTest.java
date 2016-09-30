@@ -1,8 +1,8 @@
-package clarity.api.test;
+package clarity.test;
 
-import clarity.api.endpoints.ClarityApi;
-import clarity.api.util.HTTP;
-import clarity.api.util.JSON;
+import api.endpoints.ClarityApi;
+import api.util.HTTP;
+import api.util.JSON;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
