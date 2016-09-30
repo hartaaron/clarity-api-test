@@ -1,9 +1,6 @@
 package clarity.api.util;
 
-import clarity.api.endpoints.ClarityApi;
 import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
-import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.request.HttpRequest;
 import com.mashape.unirest.request.HttpRequestWithBody;
 import org.apache.commons.io.IOUtils;
@@ -15,15 +12,7 @@ import java.util.Map;
 
 public class UnirestPrinter
 {
-	void printUnirestResponse(HttpResponse response) {
-
-		System.out.println("\n----- RESPONSE -----\n");
-		System.out.println(response.getStatus());
-		System.out.println(response.getHeaders());
-		System.out.println(response.getBody());
-	}
-
-	void printUnirestRequestWithBody(HttpRequest request) throws IOException
+	void printUnirestRequest(HttpRequest request) throws IOException
 	{
 		System.out.println("\n----- REQUEST -----\n");
 		System.out.println(request.getHttpMethod() + " " + request.getUrl());
@@ -52,10 +41,30 @@ public class UnirestPrinter
 			InputStream in = request.getBody().getEntity().getContent();
 			String body = IOUtils.toString(in, "UTF-8");
 			in.close();
-		} catch (IOException e) {
+			System.out.println(body);
+		}
+		catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
 
-		System.out.println(body);
+
+	void printUnirestResponse(HttpResponse response)
+	{
+		System.out.println("\n----- RESPONSE -----\n");
+		System.out.println(response.getStatus());
+		printResponseHeaders(response);
+		System.out.println(response.getBody());
+	}
+
+	void printResponseHeaders(HttpResponse response)
+	{
+		Map<String, List<String>> headers = response.getHeaders();
+		for(String key : headers.keySet()){
+			List<String> values = headers.get(key);
+			for(String value : values) {
+				System.out.println(key + " : " + value);
+			}
+		}
 	}
 }

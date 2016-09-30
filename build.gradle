@@ -89,9 +89,9 @@ test {
 
 
 cucumber {
-//	formats = ['pretty', 'html:target/cucumber', 'json:target/cucumber.json']
-//	glueDirs = ['clarity/api/step_definitions']
-//	featureDirs = ['src/test/cucumber/features']
+	formats = ['pretty', 'html:target/cucumber', 'json:target/cucumber.json']
+	glueDirs = ['src/cucumber/java']
+	featureDirs = ['src/cucumber/resources/features']
 
 //	tags = [ System.getProperty('tags') ] ;
 
