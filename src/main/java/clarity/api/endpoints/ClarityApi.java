@@ -1,4 +1,4 @@
-package com.hart.clarity.api.endpoints;
+package clarity.api.endpoints;
 
 import java.net.MalformedURLException;
 import java.net.URL;

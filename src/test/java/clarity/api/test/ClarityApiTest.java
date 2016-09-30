@@ -1,8 +1,8 @@
-package com.hart.clarity.api.test;
+package clarity.api.test;
 
 import com.google.gson.Gson;
-import com.hart.clarity.api.model.Environment;
-import com.hart.clarity.api.model.LoginCredentials;
+import clarity.api.model.Environment;
+import clarity.api.model.LoginCredentials;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.assertj.core.api.SoftAssertions;

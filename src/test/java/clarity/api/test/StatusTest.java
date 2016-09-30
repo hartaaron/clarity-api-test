@@ -1,6 +1,6 @@
-package com.hart.clarity.api.test;
+package clarity.api.test;
 
-import com.hart.util.JSON;
+import clarity.api.util.JSON;
 import io.restassured.specification.RequestSpecification;
 import org.junit.Test;
 
@@ -12,7 +12,7 @@ public class StatusTest extends ClarityApiTest
 	@Test
 	public void should_get_api_management_info()
 	{
-		RequestSpecification statusRequest = clarityRequest.basePath("/api/management/info");
+		RequestSpecification statusRequest = clarityRequest.basePath("/clarity/api/management/info");
 
 		response = statusRequest.when().get().then().extract().response();
 

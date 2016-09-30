@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/clarity-api-test.iml" filepath="$PROJECT_DIR$/.idea/modules/clarity-api-test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/clarity-api-test_cucumber.iml" filepath="$PROJECT_DIR$/.idea/modules/clarity-api-test_cucumber.iml" group="clarity-api-test" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/clarity-api-test_main.iml" filepath="$PROJECT_DIR$/.idea/modules/clarity-api-test_main.iml" group="clarity-api-test" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/clarity-api-test_test.iml" filepath="$PROJECT_DIR$/.idea/modules/clarity-api-test_test.iml" group="clarity-api-test" />
     </modules>

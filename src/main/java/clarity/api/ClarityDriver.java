@@ -1,6 +1,4 @@
-package com.hart.clarity.api;
-
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+package clarity.api;
 
 public interface ClarityDriver
 {

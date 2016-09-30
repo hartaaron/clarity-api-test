@@ -19,6 +19,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="clarity-api-test_cucumber" target="1.8" />
       <module name="clarity-api-test_main" target="1.8" />
       <module name="clarity-api-test_test" target="1.8" />
     </bytecodeTargetLevel>

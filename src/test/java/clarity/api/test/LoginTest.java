@@ -1,8 +1,8 @@
-package com.hart.clarity.api.test;
+package clarity.api.test;
 
-import com.hart.clarity.api.endpoints.ClarityApi;
-import com.hart.util.HTTP;
-import com.hart.util.JSON;
+import clarity.api.endpoints.ClarityApi;
+import clarity.api.util.HTTP;
+import clarity.api.util.JSON;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
@@ -15,8 +15,6 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.StringWriter;
-import java.net.MalformedURLException;
 import java.util.List;
 import java.util.Map;
 

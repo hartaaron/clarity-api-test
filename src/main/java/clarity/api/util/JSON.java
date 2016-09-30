@@ -1,4 +1,4 @@
-package com.hart.util;
+package clarity.api.util;
 
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
