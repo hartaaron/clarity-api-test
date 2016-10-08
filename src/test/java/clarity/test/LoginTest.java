@@ -27,7 +27,7 @@ public class LoginTest extends ClarityApiTest
 	public String loginJson = " {\"email\":\"{{email}}\",\"password\":\"{{password}}\"} ";
 
 	@Test
-	public void should_login_with_valid_user()
+	public void login_with_rest_assured()
 	{
 		RequestSpecification loginRequest = clarityRequest.with().basePath("/mm/v2/token");
 

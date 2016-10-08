@@ -1,21 +1,31 @@
 package clarity.api.steps;
 
+import api.endpoints.ClarityApi;
+import api.util.Logger;
+import clarity.api.model.ClarityUser;
+
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
-public class LoginSteps
+import java.util.Properties;
+
+public class LoginSteps extends ClarityTestSteps
 {
+
 	@Given("^a valid user with username \"([^\"]*)\" and password \"([^\"]*)\"$")
-	public void a_valid_user_with_username_and_password(String arg1, String arg2) throws Throwable
+	public void a_valid_user_with_username_and_password(String username, String password) throws Throwable
 	{
-		System.out.println("Given I have a valid user.\n");
+		log.write(String.format("Given a valid user with username %s and password %s", username, password));
+
+		user = getUser(username, password);
 	}
 
 	@When("^I login to Clarity$")
 	public void i_login_to_Clarity() throws Throwable
 	{
-		System.out.println("When I log in to Clarity.");
+		clarity.login(user);
+		log.write("When I log in to Clarity.");
 	}
 
 	@Then("^I should be logged in to Clarity$")

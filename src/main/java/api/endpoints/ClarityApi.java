@@ -18,10 +18,20 @@ public class ClarityApi
 		init(new URL(baseUrl));
 	}
 
-
-
 	public void init(URL baseUrl) throws MalformedURLException
 	{
 		login = new LoginEndpoint(baseUrl);
+	}
+
+	public void login(String username, String password)
+	{
+		// generate request
+		login.setCredentials(username, password);
+
+		// send request
+
+		// get response
+
+		// store authToken
 	}
 }

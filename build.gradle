@@ -101,7 +101,7 @@ cucumber {
 	ignoreFailures = false
 
 	jvmOptions {
-		maxHeapSize = '1024m'
-		tags=['@Login']
+		maxHeapSize = '512'
+		environment = 'CLARITY-TST'
 	}
 }
