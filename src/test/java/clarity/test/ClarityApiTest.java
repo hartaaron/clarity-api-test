@@ -1,8 +1,8 @@
 package clarity.test;
 
 import com.google.gson.Gson;
-import api.model.Environment;
-import api.model.LoginCredentials;
+import clarity.api.model.ClarityEnvironment;
+import clarity.api.api.model.LoginCredentials;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.assertj.core.api.SoftAssertions;
@@ -23,7 +23,7 @@ public abstract class ClarityApiTest
 //	public ErrorCollector check = new ErrorCollector();
 	SoftAssertions check = new SoftAssertions();
 
-	Environment env;
+	ClarityEnvironment env;
 	LoginCredentials validLoginCredentials;
 
 	RequestSpecification jsonRequest;
@@ -35,17 +35,19 @@ public abstract class ClarityApiTest
 	@Before
 	public void setUp()
 	{
+		System.out.println("\n========== TEST STARTING: " + getTestName() + " ==========\n");
+
 		// get the base URL based on the environment or system property
 
 		//TODO: make environment setting configurable
-		env = Environment.TEST;
-		if (env.CLARITY_URL.isEmpty()) {
+		env = ClarityEnvironment.TEST;
+
+		if (env.CLARITY_URL.isEmpty())
+		{
 			String url = System.getProperty("CLARITY_TEST_URL");
 		}
 
-		// get Clarity user login credentials from a system property
-
-		System.out.println("\n========== TEST STARTING: " + getTestName() + " ==========\n");
+		// get Clarity user login credentials from system property
 
 		String email = System.getProperty("CLARITY_USER_EMAIL");
 		String password = System.getProperty("CLARITY_USER_PASSWORD");

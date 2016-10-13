@@ -1,4 +1,6 @@
-package api.util;
+package clarity.api.api.util;
+
+import org.apache.commons.lang3.StringUtils;
 
 import java.lang.reflect.Type;
 import java.text.MessageFormat;
@@ -7,6 +9,7 @@ public class Logger<T>
 {
 	public String name;
 	public String level;
+	public int indent = 40;
 
 	public Logger()
 	{}
@@ -21,8 +24,9 @@ public class Logger<T>
 		this.level = level;
 	}
 
-	public Logger(Class<T> type){
-		name = type.getClass().getSimpleName();
+	public Logger(Class<T> type)
+	{
+		name = type.getSimpleName();
 	}
 
 	public Logger(Object o) {
@@ -41,8 +45,10 @@ public class Logger<T>
 
 	public String format(String message)
 	{
+		String indentation = StringUtils.repeat(" ", indent);
+
 		if (name != null) {
-			message = name + " " + message;
+			message = "\n" + indentation + "[" + name + "] " + message;
 		}
 
 		return message;

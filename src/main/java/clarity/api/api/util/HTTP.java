@@ -1,4 +1,4 @@
-package api.util;
+package clarity.api.api.util;
 
 public class HTTP
 {

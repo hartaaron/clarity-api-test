@@ -1,7 +1,6 @@
 package clarity.api.model;
 
-import api.util.Logger;
-import com.google.common.reflect.Parameter;
+import clarity.api.api.util.Logger;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 

@@ -1,13 +1,15 @@
 package clarity.test;
 
-import api.endpoints.ClarityApi;
-import api.util.HTTP;
-import api.util.JSON;
+import clarity.api.api.endpoints.ClarityApi;
+import clarity.api.api.util.HTTP;
+import clarity.api.api.util.JSON;
+import clarity.api.model.ClarityEnvironment;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import com.mashape.unirest.request.HttpRequestWithBody;
+import com.mashape.unirest.request.body.RequestBodyEntity;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.apache.commons.io.IOUtils;
@@ -59,38 +61,25 @@ public class LoginTest extends ClarityApiTest
 	@Test
 	public void login_with_unirest() throws IOException, UnirestException
 	{
-		ClarityApi clarityApi = new ClarityApi(env.CLARITY_URL);
-		clarityApi.login.setCredentials(validLoginCredentials);
-		System.out.println("email: " + clarityApi.login.getEmail());
-		System.out.println("password: " + clarityApi.login.getPassword());
-		System.out.println(clarityApi.login.getJsonFromTemplate());
+		ClarityApi clarityApi = new ClarityApi(ClarityEnvironment.TEST);
+		clarityApi.loginEndpoint.setEmail(validLoginCredentials.email);
+		clarityApi.loginEndpoint.setPassword(validLoginCredentials.password);
 
+		System.out.println("email: " + clarityApi.loginEndpoint.getEmail());
+		System.out.println("password: " + clarityApi.loginEndpoint.getPassword());
+		System.out.println("JSON body: " + clarityApi.loginEndpoint.getJsonCredentials());
 
-		HttpRequestWithBody loginRequest = Unirest.post(clarityApi.login.getRequestUrl());
-		loginRequest
-				.headers(clarityApi.login.getRequestHeaders())
-				.body(clarityApi.login.getRequestBody());
+		System.out.println("Request URL: " + clarityApi.loginEndpoint.getRequestUrl());
+		System.out.println("path: " + clarityApi.loginEndpoint.getPath());
+
+		HttpRequestWithBody loginRequest = Unirest.post(clarityApi.loginEndpoint.getRequestUrl());
+		RequestBodyEntity x  = loginRequest
+				.headers(clarityApi.loginEndpoint.getRequestHeaders())
+				.body(clarityApi.loginEndpoint.getRequestBody());
+
+		printUnirestRequest(loginRequest);
 
 		HttpResponse<JsonNode> loginResponse = loginRequest.asJson();
-
-		System.out.println("original body: " + clarityApi.login.getRequestBody());
-
-		System.out.println("\n----- REQUEST -----\n");
-		System.out.println(loginRequest.getHttpMethod() + " " + loginRequest.getUrl());
-
-		Map<String, List<String>> headers = loginRequest.getHeaders();
-		for(String key : headers.keySet()){
-			List<String> values = headers.get(key);
-			for(String value : values) {
-				System.out.println(key + " : " + value);
-			}
-		}
-
-		InputStream in = loginRequest.getBody().getEntity().getContent();
-		String body = IOUtils.toString(in, "UTF-8");
-		in.close();
-
-		System.out.println(body);
 
 		System.out.println("\n----- RESPONSE -----\n");
 		System.out.println(loginResponse.getStatus());
@@ -100,7 +89,6 @@ public class LoginTest extends ClarityApiTest
 
 	void printUnirestRequest(HttpRequestWithBody request) throws IOException
 	{
-
 		System.out.println("\n----- REQUEST -----\n");
 		System.out.println(request.getHttpMethod() + " " + request.getUrl());
 

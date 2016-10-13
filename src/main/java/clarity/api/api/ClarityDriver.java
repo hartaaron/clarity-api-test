@@ -1,4 +1,4 @@
-package api;
+package clarity.api.api;
 
 public interface ClarityDriver
 {

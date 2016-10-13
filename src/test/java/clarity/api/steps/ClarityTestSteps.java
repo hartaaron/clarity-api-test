@@ -1,12 +1,8 @@
 package clarity.api.steps;
 
-import api.endpoints.ClarityApi;
-import api.util.Logger;
-import clarity.api.ClarityApiDriver.ClarityApiDriver;
-import clarity.api.model.ClarityPatient;
-import clarity.api.model.ClarityPatientData;
-import clarity.api.model.ClarityTestData;
-import clarity.api.model.ClarityUser;
+import clarity.api.api.util.Logger;
+import clarity.api.ClarityApiDriver;
+import clarity.api.model.*;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.util.Properties;
@@ -28,7 +24,7 @@ abstract class ClarityTestSteps
 
 		log = new Logger();
 
-		clarity = new ClarityApiDriver();
+		clarity = new ClarityApiDriver(ClarityEnvironment.TEST);
 
 		loadTestData(null);
 	}
@@ -44,11 +40,9 @@ abstract class ClarityTestSteps
 		ClarityUser user = testData.getUser(username, password);
 
 		if (user == null) {
-			user = new ClarityUser()
-			{{
-				username = username;
-				password = password;
-			}};
+			user = new ClarityUser();
+			user.password = username;
+			user.password = password;
 		}
 
 		return user;

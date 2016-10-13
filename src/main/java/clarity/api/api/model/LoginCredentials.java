@@ -1,4 +1,4 @@
-package api.model;
+package clarity.api.api.model;
 
 public class LoginCredentials
 {

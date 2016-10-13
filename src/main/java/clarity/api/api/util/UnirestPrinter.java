@@ -1,4 +1,4 @@
-package api.util;
+package clarity.api.api.util;
 
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.request.HttpRequest;

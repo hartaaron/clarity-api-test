@@ -1,6 +1,6 @@
 package clarity.test;
 
-import api.util.JSON;
+import clarity.api.api.util.JSON;
 import io.restassured.specification.RequestSpecification;
 import org.junit.Test;
 
