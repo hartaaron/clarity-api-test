@@ -36,20 +36,13 @@ public class AccessEndpoint extends ClarityEndpoint
 
 	public HttpResponse<String> send(String email, String password) throws Exception
 	{
-		log.write("in send() email: " + email);
-		log.write("in send() password: " + password);
 		AccessCredentials credentials = new AccessCredentials(email, password);
 		return send(credentials);
 	}
 
 	public HttpResponse<String> send(ClarityUser user) throws Exception
 	{
-		String json = user.toJson();
-		log.write("body: " + json);
-
-		response = Unirest.post(getRequestUrl()).headers(getRequestHeaders()).body(json).asString();
-
-		return response;
+		return send(user.email, user.password);
 	}
 
 
