@@ -1,4 +1,4 @@
-package clarity.api.api.util;
+package clarity.util;
 
 import org.apache.commons.lang3.StringUtils;
 

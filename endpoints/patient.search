@@ -1,4 +1,17 @@
+patient.search
+==============
+
+patient.search.request
+----------------------
+METHOD:
+URL:
+
 patient.search.response
+-----------------------
+
+STATUS: 
+
+BODY:
 
 {
     "items": [

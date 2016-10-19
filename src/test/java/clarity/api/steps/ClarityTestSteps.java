@@ -1,7 +1,7 @@
 package clarity.api.steps;
 
-import clarity.api.api.util.Logger;
-import clarity.api.ClarityApiDriver;
+import clarity.api.unirest.UnirestClarityDriver;
+import clarity.util.Logger;
 import clarity.api.model.*;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -10,21 +10,15 @@ import java.util.Properties;
 abstract class ClarityTestSteps
 {
 	Properties settings;
-	Gson gson;
-	GsonBuilder gsonBuilder;
 	Logger log;
 	ClarityTestData testData;
-	ClarityApiDriver clarity;
 	ClarityUser user;
+	UnirestClarityDriver clarity;
 
 	public ClarityTestSteps()
 	{
-		gson = new Gson();
-		gsonBuilder = new GsonBuilder();
-
 		log = new Logger();
-
-		clarity = new ClarityApiDriver(ClarityEnvironment.TEST);
+		clarity = new UnirestClarityDriver(ClarityEnvironment.TEST);
 
 		loadTestData(null);
 	}

@@ -19,13 +19,17 @@ public class LoginSteps extends ClarityTestSteps
 	@When("^I login to Clarity$")
 	public void i_login_to_Clarity() throws Throwable
 	{
+		System.out.println("--I login to Clarity-- as user: " + user);
+		System.out.println("email: " + user.email);
+		System.out.println("password: " + user.password);
+
 		clarity.login(user);
 	}
 
 	@Then("^I should be logged in to Clarity$")
 	public void i_should_be_logged_in_to_Clarity() throws Throwable
 	{
-		assertThat(user.xAccessToken).isNotEmpty();
+		assertThat(user.x_access_token).isNotEmpty();
 
 	}
 

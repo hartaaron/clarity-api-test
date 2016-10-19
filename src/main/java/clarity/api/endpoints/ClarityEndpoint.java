@@ -1,16 +1,14 @@
 package clarity.api.endpoints;
 
-import clarity.api.api.util.Logger;
+import clarity.api.util.GsonObjectMapper;
+import clarity.util.Logger;
 import clarity.api.model.ClarityEnvironment;
-import com.google.gson.Gson;
-import com.mashape.unirest.http.Headers;
-import com.mashape.unirest.http.HttpMethod;
-import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
+import com.mashape.unirest.http.*;
+import com.mashape.unirest.http.exceptions.UnirestException;
 import com.mashape.unirest.request.HttpRequest;
 import com.mashape.unirest.request.HttpRequestWithBody;
-import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
+
+import com.mashape.unirest.request.body.RequestBodyEntity;
 import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
@@ -22,25 +20,23 @@ import java.util.Map;
 
 public abstract class ClarityEndpoint
 {
-	Logger log;
-	Gson gson;
-
-	RequestSpecification request;
-
-
-	public HttpResponse<JsonNode> response;
-
-//	HttpMethod requestMethod;
-	String requestPath;
-	Map<String, String> requestHeaders;
-	String requestBody;
-
-	ClarityEnvironment env;
+	public ClarityEnvironment env;
 	public String path;
 
-	static final String APPLICATION_JSON = "application/json";
+	protected Logger log;
+	protected GsonObjectMapper gson;
 
-	static Map<String, String> JSON_HEADERS = new HashMap<String, String>()
+	protected HttpMethod requestMethod;
+	protected String requestPath;
+	protected HashMap<String, String> requestHeaders;
+	protected String requestBody;
+
+	protected HttpRequest request;
+	protected HttpResponse<String> response;
+
+	protected static final String APPLICATION_JSON = "application/json";
+
+	protected static HashMap<String, String> JSON_HEADERS = new HashMap<String, String>()
 	{{
 		put("Content-Type", APPLICATION_JSON);
 		put("Accept", APPLICATION_JSON);
@@ -55,7 +51,7 @@ public abstract class ClarityEndpoint
 	public void init(ClarityEnvironment env)
 	{
 		log = new Logger(this.getClass());
-		gson = new Gson();
+		gson = new GsonObjectMapper();
 		this.env = env;
 		requestPath = getPath();
 		requestHeaders = JSON_HEADERS;
@@ -66,7 +62,7 @@ public abstract class ClarityEndpoint
 
 	public String getBaseUrl()
 	{
-		return env.CLARITY_URL;
+		return env.CLARITY_BASE_URL;
 	}
 
 	public String getPath()
@@ -79,12 +75,14 @@ public abstract class ClarityEndpoint
 		return getBaseUrl() + getPath();
 	}
 
-	public Map<String, String> getRequestHeaders()
+	public HttpMethod getRequestMethod() {
+		return requestMethod;
+	}
+
+	public HashMap<String, String> getRequestHeaders()
 	{
 		return requestHeaders;
 	}
-
-
 
 	public Integer getResponseStatusCode()
 	{
@@ -114,12 +112,16 @@ public abstract class ClarityEndpoint
 		return response.getBody().toString();
 	}
 
+	public HttpResponse<String> post(String url, HashMap<String, String> headers, String body) throws UnirestException
+	{
+		Unirest.setObjectMapper(gson);
+		return Unirest.post(url).headers(headers).body(body).asString();
+	}
 
-
-	public void printUnirestRequest(HttpRequest request) throws IOException
+	public void printUnirestRequest(HttpRequest request)
 	{
 		System.out.println("\n----- REQUEST -----\n");
-		System.out.println(request.getHttpMethod() + " " + request.getUrl());
+//		System.out.println(request.getHttpMethod() + " " + request.getUrl());
 
 		// print headers
 		System.out.println("\n--- HEADERS ---");
@@ -135,12 +137,23 @@ public abstract class ClarityEndpoint
 
 		if (request instanceof HttpRequestWithBody)
 		{
-			InputStream in = request.getBody().getEntity().getContent();
-			String body = IOUtils.toString(in, "UTF-8");
-			in.close();
-			System.out.println("\n--- BODY ---");
-			System.out.println(body);
+			try {
+				InputStream in = request.getBody().getEntity().getContent();
+				String body = IOUtils.toString(in, "UTF-8");
+				in.close();
+
+				System.out.println("\n--- BODY ---");
+				System.out.println(body);
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
+	}
+
+	public void printUnirestRequest(RequestBodyEntity r)
+	{
+		printUnirestRequest(r.getHttpRequest());
 	}
 
 	public void printUnirestResponse(HttpResponse response)

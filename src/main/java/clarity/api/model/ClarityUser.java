@@ -13,13 +13,9 @@ public class ClarityUser extends ClarityModelObject
 	public String user_id;
 	public String x_access_token;
 
-	public String getUserId() { return user_id; }
-	public void setUserId(String userId) { this.user_id = userId; }
 
-	public String getXAccessToken() { return x_access_token; }
-	public void setAccessToken(String x_access_token) { this.x_access_token = x_access_token; }
-
-	public String xAccessToken;
+	public ClarityUser() {}
+	public ClarityUser(String email, String password) { this.email = email; this.password = password; }
 
 	public String toString()
 	{
