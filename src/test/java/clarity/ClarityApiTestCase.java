@@ -2,6 +2,7 @@ package clarity;
 
 import clarity.api.model.ClarityEnvironment;
 import clarity.api.model.ClarityUser;
+import clarity.api.unirest.UnirestClarityDriver;
 import clarity.api.util.GsonObjectMapper;
 import clarity.util.Logger;
 import org.assertj.core.api.SoftAssertions;
@@ -12,7 +13,7 @@ import org.junit.rules.TestName;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ClarityTestCase
+public class ClarityApiTestCase
 {
 	@Rule
 	public TestName test = new TestName();
@@ -23,6 +24,7 @@ public class ClarityTestCase
 	protected ClarityEnvironment env;
 	protected ClarityUser validUser;
 	protected ClarityUser invalidUser;
+	protected UnirestClarityDriver clarity;
 
 	protected GsonObjectMapper gson = new GsonObjectMapper();
 
@@ -36,17 +38,11 @@ public class ClarityTestCase
 		log.write("env: " + env.name);
 		log.write("CLARITY_BASE_URL: " + env.CLARITY_BASE_URL);
 
-		validUser = new ClarityUser() {{
-			email = "clarity-external-testing@hart.com";
-			password = "Cl@rity1";
-		}};
-//		log.write("validUser: " + validUser);
+		validUser = new ClarityUser("clarity-external-testing@hart.com", "Cl@rity1");
+		log.write("validUser: " + validUser.toJson());
 
-		invalidUser = new ClarityUser() {{
-			email = "clarity-invalid-user@hart.com";
-			password = "Cl@rity1";
-		}};
-//		log.write("invalidUser: " + invalidUser);
+		invalidUser = new ClarityUser("clarity-invalid-user@hart.com", "Cl@rity1");
+		log.write("invalidUser: " + invalidUser.toJson());
 	}
 
 	@After

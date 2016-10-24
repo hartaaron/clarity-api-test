@@ -36,12 +36,19 @@ public class AccessEndpoint extends ClarityEndpoint
 
 	public HttpResponse<String> send(String email, String password) throws Exception
 	{
+		log.write("email:"  + email);
+		log.write("password:" + password);
+
 		AccessCredentials credentials = new AccessCredentials(email, password);
+		log.write("credentials: " + credentials);
+		log.write("credentials.email: " + credentials.email);
+		log.write("credentials.toJson(): " + credentials.toJson());
 		return send(credentials);
 	}
 
 	public HttpResponse<String> send(ClarityUser user) throws Exception
 	{
+		log.write("*** USER: " + user.toJson());
 		return send(user.email, user.password);
 	}
 

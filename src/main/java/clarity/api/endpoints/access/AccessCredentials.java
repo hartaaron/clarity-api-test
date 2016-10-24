@@ -1,9 +1,9 @@
 package clarity.api.endpoints.access;
 
-import clarity.api.model.JsonEntity;
+import clarity.api.endpoints.JsonEntity;
 import com.google.gson.annotations.Expose;
 
-public class AccessCredentials extends JsonEntity
+public class AccessCredentials extends JsonEntity<AccessCredentials>
 {
 	@Expose
 	public String email;
@@ -11,10 +11,14 @@ public class AccessCredentials extends JsonEntity
 	@Expose
 	public String password;
 
-	public AccessCredentials() {}
+	public AccessCredentials()
+	{
+		super();
+	}
 
 	public AccessCredentials(String email, String password)
 	{
+		super();
 		this.email = email;
 		this.password = password;
 	}

@@ -13,6 +13,7 @@
     <orderEntry type="library" name="Gradle: io.rest-assured:rest-assured:3.0.1" level="project" />
     <orderEntry type="library" name="Gradle: io.rest-assured:json-path:3.0.1" level="project" />
     <orderEntry type="library" name="Gradle: io.rest-assured:xml-path:3.0.1" level="project" />
+    <orderEntry type="library" name="Gradle: org.apache.commons:commons-lang3:3.4" level="project" />
     <orderEntry type="library" name="Gradle: com.mashape.unirest:unirest-java:1.4.9" level="project" />
     <orderEntry type="library" name="Gradle: commons-io:commons-io:2.5" level="project" />
     <orderEntry type="library" name="Gradle: net.serenity-bdd:serenity-gradle-plugin:1.1.41" level="project" />
@@ -31,7 +32,6 @@
     <orderEntry type="library" name="Gradle: org.ccil.cowan.tagsoup:tagsoup:1.2.1" level="project" />
     <orderEntry type="library" name="Gradle: org.codehaus.groovy:groovy-json:2.4.6" level="project" />
     <orderEntry type="library" name="Gradle: io.rest-assured:rest-assured-common:3.0.1" level="project" />
-    <orderEntry type="library" name="Gradle: org.apache.commons:commons-lang3:3.4" level="project" />
     <orderEntry type="library" name="Gradle: org.apache.httpcomponents:httpasyncclient:4.1.1" level="project" />
     <orderEntry type="library" name="Gradle: org.json:json:20160212" level="project" />
     <orderEntry type="library" name="Gradle: com.google.guava:guava:19.0" level="project" />

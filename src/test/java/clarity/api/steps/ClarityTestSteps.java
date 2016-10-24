@@ -29,13 +29,13 @@ abstract class ClarityTestSteps
 		testData = new ClarityTestData(settings).load();
 	}
 
-	public ClarityUser getUser(String username, String password)
+	public ClarityUser getUser(String email, String password)
 	{
-		ClarityUser user = testData.getUser(username, password);
+		ClarityUser user = testData.getUser(email, password);
 
 		if (user == null) {
 			user = new ClarityUser();
-			user.password = username;
+			user.email = email;
 			user.password = password;
 		}
 

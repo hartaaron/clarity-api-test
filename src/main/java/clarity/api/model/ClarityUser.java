@@ -1,5 +1,6 @@
 package clarity.api.model;
 
+import clarity.api.util.GsonObjectMapper;
 import com.google.gson.annotations.Expose;
 
 public class ClarityUser extends ClarityModelObject
@@ -14,11 +15,21 @@ public class ClarityUser extends ClarityModelObject
 	public String x_access_token;
 
 
-	public ClarityUser() {}
-	public ClarityUser(String email, String password) { this.email = email; this.password = password; }
-
-	public String toString()
+	public ClarityUser()
 	{
-		return String.format("ClarityUser: { email: %s, password; %s }", email, password);
+		super();
+		System.out.println("in ClarityUser constructor");
+	}
+
+	public ClarityUser(String email, String password)
+	{
+		super();
+		this.email = email;
+		this.password = password;
+	}
+
+	public Boolean hasToken()
+	{
+		return x_access_token != null;
 	}
 }

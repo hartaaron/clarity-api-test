@@ -13,6 +13,7 @@ import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,15 +45,17 @@ public abstract class ClarityEndpoint
 
 	public ClarityEndpoint(ClarityEnvironment env, String path)
 	{
-		init(env);
-		this.path = path;
+		init(env, path);
 	}
 
-	public void init(ClarityEnvironment env)
+	public void init(ClarityEnvironment env, String path)
 	{
 		log = new Logger(this.getClass());
 		gson = new GsonObjectMapper();
+
 		this.env = env;
+		this.path = path;
+
 		requestPath = getPath();
 		requestHeaders = JSON_HEADERS;
 		requestBody = null;
@@ -70,13 +73,23 @@ public abstract class ClarityEndpoint
 		return path;
 	}
 
+	public void setPath(String path)
+	{
+		this.path = path;
+	}
+
 	public String getRequestUrl()
 	{
 		return getBaseUrl() + getPath();
 	}
 
-	public HttpMethod getRequestMethod() {
+	public HttpMethod getRequestMethod()
+	{
 		return requestMethod;
+	}
+
+	public void setRequestMethod(HttpMethod requestMethod) {
+		this.requestMethod = requestMethod;
 	}
 
 	public HashMap<String, String> getRequestHeaders()
@@ -148,6 +161,19 @@ public abstract class ClarityEndpoint
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		}
+	}
+
+	public String urlencode(String s)
+	{
+		String encoding = "utf-8";
+		try {
+			return URLEncoder.encode(s, encoding);
+		} catch (Exception e)
+		{
+			log.write("failed to encode string: " + s);
+			e.printStackTrace();
+			return s;
 		}
 	}
 

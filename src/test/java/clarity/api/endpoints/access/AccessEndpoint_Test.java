@@ -1,15 +1,15 @@
 package clarity.api.endpoints.access;
 
-import clarity.ClarityTestCase;
+import clarity.ClarityApiTestCase;
+import clarity.api.endpoints.ClarityResponseBody;
 import clarity.api.model.ClarityUser;
 import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.Unirest;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class AccessEndpoint_Test extends ClarityTestCase
+public class AccessEndpoint_Test extends ClarityApiTestCase
 {
 	AccessEndpoint endpoint;
 
@@ -21,9 +21,7 @@ public class AccessEndpoint_Test extends ClarityTestCase
 
 	@Test
 	public void gets_access_result() throws Exception
-	{
-		AccessCredentials credentials = new AccessCredentials(validUser.email, validUser.password);
-		HttpResponse<String> response = endpoint.send(credentials);
+	{	HttpResponse<String> response = endpoint.send(validUser);
 
 		check.assertThat(response).isNotNull();
 		check.assertThat(response.getStatus()).isNotNull();
@@ -43,14 +41,19 @@ public class AccessEndpoint_Test extends ClarityTestCase
 		check.assertThat(response.getStatus()).isEqualTo(200);
 
 		String json = response.getBody();
-		AccessResult result = gson.fromJson(json, AccessResult.class);
+		ClarityResponseBody body = new ClarityResponseBody().fromJson(json);
 
-		check.assertThat(result.success).isEqualTo(true);
-		check.assertThat(result.code).isEqualTo(200);
-		check.assertThat(result.data).isNotNull();
+		check.assertThat(body.success).isEqualTo(true);
+		check.assertThat(body.code).isEqualTo(200);
+		check.assertThat(body.data).isNotNull();
 
-		check.assertThat(result.data.user_id).isNotNull();
-		check.assertThat(result.data.x_access_token).isNotNull();
+		System.out.println("===" + body.data.getClass().getName());
+
+		System.out.println("===>>" + body.data.toString());
+
+		AccessData data = new AccessData().fromJson(body.data.toString());
+		check.assertThat(data.user_id).isNotNull();
+		check.assertThat(data.x_access_token).isNotNull();
 	}
 
 	@Test
@@ -60,5 +63,13 @@ public class AccessEndpoint_Test extends ClarityTestCase
 		HttpResponse<String> response = endpoint.send(credentials);
 
 		check.assertThat(response.getStatus()).isEqualTo(401);
+
+		String json = response.getBody();
+		ClarityResponseBody body = new ClarityResponseBody().fromJson(json);
+		check.assertThat(body.success).isEqualTo(false);
+		check.assertThat(body.code).isEqualTo(401);
+		check.assertThat(body.data).isEqualTo("401 Unauthorized");
+
+
 	}
 }

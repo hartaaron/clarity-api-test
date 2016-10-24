@@ -9,10 +9,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class LoginSteps extends ClarityTestSteps
 {
 
-	@Given("^a valid user with username \"([^\"]*)\" and password \"([^\"]*)\"$")
-	public void a_valid_user_with_username_and_password(String username, String password) throws Throwable
+	@Given("^a valid user with email \"([^\"]*)\" and password \"([^\"]*)\"$")
+	public void a_valid_user_with_email_and_password(String email, String password) throws Throwable
 	{
-		user = getUser(username, password);
+		user = getUser(email, password);
 
 	}
 

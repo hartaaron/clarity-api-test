@@ -5,6 +5,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mashape.unirest.http.ObjectMapper;
 
+import java.lang.reflect.Modifier;
+
 public class GsonObjectMapper implements ObjectMapper
 {
 	public Gson gson;
@@ -13,23 +15,27 @@ public class GsonObjectMapper implements ObjectMapper
 
 	public GsonObjectMapper()
 	{
-		gsonFormatted = new GsonBuilder()
-				.setPrettyPrinting()
-				.disableHtmlEscaping()
-				.excludeFieldsWithoutExposeAnnotation()
-				.create();
+		GsonBuilder gsonBuilder = new GsonBuilder()
+		.excludeFieldsWithModifiers(
+					Modifier.STATIC,
+					Modifier.PRIVATE,
+					Modifier.PROTECTED,
+					Modifier.TRANSIENT
+		);
+//					Modifier.constructorModifiers(),
+//					Modifier.interfaceModifiers(),
+//					Modifier.methodModifiers()
+//		);
 
-		gsonUnformatted = new GsonBuilder()
-				.disableHtmlEscaping()
-				.excludeFieldsWithoutExposeAnnotation()
-				.create();
+		gsonUnformatted = gsonBuilder.create();
+		gsonFormatted = gsonBuilder.setPrettyPrinting().create();
 
 		format(false);
 	}
 
-	public void format(Boolean pretty)
+	public GsonObjectMapper format(Boolean formatted)
 	{
-		if (pretty == true)
+		if (formatted == true)
 		{
 			gson = gsonFormatted;
 		}
@@ -37,6 +43,8 @@ public class GsonObjectMapper implements ObjectMapper
 		{
 			gson = gsonUnformatted;
 		}
+
+		return this;
 	}
 
 	public <T> T fromJson(String value, Class<T> type)
