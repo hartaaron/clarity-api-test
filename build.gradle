@@ -86,7 +86,7 @@ test {
 
 cucumber {
 	formats = ['pretty', 'html:target/cucumber', 'json:target/cucumber.json']
-	glueDirs = ['clarity.api.steps']
+	glueDirs = ['clarity.api.env', 'clarity.api.hooks', 'clarity.api.steps']
 	featureDirs = ['src/cucumber/resources/features']
 
 //	tags = [ System.getProperty('tags') ] ;

@@ -1,5 +1,6 @@
 package clarity.api.endpoints.access;
 
+import clarity.api.UnirestPrinter;
 import clarity.api.endpoints.ClarityEndpoint;
 import clarity.api.model.ClarityEnvironment;
 import clarity.api.model.ClarityUser;
@@ -20,15 +21,16 @@ public class AccessEndpoint extends ClarityEndpoint
 	public HttpResponse<String> send(AccessCredentials credentials) throws Exception
 	{
 		String requestUrl = getRequestUrl();
-		log.write("requestUrl: " + requestUrl);
-
 		String requestBody = credentials.toJson();
-		log.write("requestBody:" + requestBody);
-
+		
+		log.write("request URL: " + requestUrl);
+		log.write("request headers: " + getRequestHeaders());
+		log.write("request body: " + requestBody);
+		
 		response = post(getRequestUrl(), getRequestHeaders(), requestBody);
-		log.write("response status: " + response.getStatus() + " " + response.getStatusText());
-
 		String responseJson = response.getBody();
+		
+		log.write("response status: " + response.getStatus() + " " + response.getStatusText());
 		log.write("response json: " + responseJson);
 
 		return response;
@@ -36,13 +38,7 @@ public class AccessEndpoint extends ClarityEndpoint
 
 	public HttpResponse<String> send(String email, String password) throws Exception
 	{
-		log.write("email:"  + email);
-		log.write("password:" + password);
-
 		AccessCredentials credentials = new AccessCredentials(email, password);
-		log.write("credentials: " + credentials);
-		log.write("credentials.email: " + credentials.email);
-		log.write("credentials.toJson(): " + credentials.toJson());
 		return send(credentials);
 	}
 

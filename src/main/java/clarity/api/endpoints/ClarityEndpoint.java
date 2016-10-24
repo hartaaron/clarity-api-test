@@ -59,8 +59,6 @@ public abstract class ClarityEndpoint
 		requestPath = getPath();
 		requestHeaders = JSON_HEADERS;
 		requestBody = null;
-
-		log.write("initialized");
 	}
 
 	public String getBaseUrl()
@@ -128,13 +126,21 @@ public abstract class ClarityEndpoint
 	public HttpResponse<String> post(String url, HashMap<String, String> headers, String body) throws UnirestException
 	{
 		Unirest.setObjectMapper(gson);
-		return Unirest.post(url).headers(headers).body(body).asString();
+		
+		HttpRequestWithBody request = Unirest.post(url).headers(headers);
+		RequestBodyEntity entity = request.body(body);
+		printRequest(entity);
+		
+		HttpResponse<String> response = Unirest.post(url).headers(headers).body(body).asString();
+		printResponse(response);
+		
+		return response;
 	}
 
-	public void printUnirestRequest(HttpRequest request)
+	public void printRequest(HttpRequest request)
 	{
 		System.out.println("\n----- REQUEST -----\n");
-//		System.out.println(request.getHttpMethod() + " " + request.getUrl());
+		System.out.println(request.getHttpMethod() + " " + request.getUrl());
 
 		// print headers
 		System.out.println("\n--- HEADERS ---");
@@ -177,12 +183,12 @@ public abstract class ClarityEndpoint
 		}
 	}
 
-	public void printUnirestRequest(RequestBodyEntity r)
+	public void printRequest(RequestBodyEntity r)
 	{
-		printUnirestRequest(r.getHttpRequest());
+		printRequest(r.getHttpRequest());
 	}
 
-	public void printUnirestResponse(HttpResponse response)
+	public void printResponse(HttpResponse response)
 	{
 		System.out.println("\n----- RESPONSE -----\n");
 		System.out.println(response.getStatus());

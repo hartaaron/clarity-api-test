@@ -35,6 +35,21 @@ public class UnirestPrinter
 		}
 	}
 
+	public String formatRequestHeaders(HttpRequest request)
+	{
+		StringBuilder out = new StringBuilder();
+		
+		Map<String, List<String>> headers = request.getHeaders();
+		for(String key : headers.keySet()){
+			List<String> values = headers.get(key);
+			for(String value : values) {
+				out.append(key + " : " + value );
+			}
+		}
+		
+		return out.toString();
+	}
+	
 	void printRequestBody(HttpRequestWithBody request)
 	{
 		try {
