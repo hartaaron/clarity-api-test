@@ -9,7 +9,7 @@ public class Logger<T>
 {
 	public String name;
 	public String level;
-	public int indent = 40;
+	public int indent = 80;
 
 	public Logger()
 	{}

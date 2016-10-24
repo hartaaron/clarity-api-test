@@ -18,7 +18,6 @@ public class ClarityUser extends ClarityModelObject
 	public ClarityUser()
 	{
 		super();
-		System.out.println("in ClarityUser constructor");
 	}
 
 	public ClarityUser(String email, String password)

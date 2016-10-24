@@ -3,8 +3,8 @@ package clarity.api.steps;
 import clarity.api.unirest.UnirestClarityDriver;
 import clarity.util.Logger;
 import clarity.api.model.*;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import org.junit.Rule;
+
 import java.util.Properties;
 
 abstract class ClarityTestSteps
@@ -17,9 +17,8 @@ abstract class ClarityTestSteps
 
 	public ClarityTestSteps()
 	{
-		log = new Logger();
+		log = new Logger(this.getClass());
 		clarity = new UnirestClarityDriver(ClarityEnvironment.TEST);
-
 		loadTestData(null);
 	}
 

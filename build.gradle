@@ -15,7 +15,6 @@ buildscript {
 		jcenter()
 	}
 	dependencies {
-//		classpath("net.serenity-bdd:serenity-gradle-plugin:1.1.1")
 		classpath "com.github.samueltbrown:gradle-cucumber-plugin:0.9"
 		classpath "net.masterthought:cucumber-reporting:0.4.0"
 	}
@@ -56,15 +55,9 @@ dependencies {
 	compile group: 'info.cukes', name: 'cucumber-java', version: '1.2.4'
 	compile group: 'info.cukes', name: 'cucumber-testng', version: '1.1.5'
 	compile group: 'info.cukes', name: 'cucumber-junit', version: '1.2.4'
+//
+//	cucumberRuntime 'info.cukes:cucumber-groovy:1.2.2'
 
-
-
-//	//Serenity BDD
-//	compile group: 'net.serenity-bdd', name: 'serenity-core', version: '1.1.36'
-//	compile group: 'net.serenity-bdd', name: 'serenity-cucumber', version: '1.1.8'
-//	compile group: 'net.serenity-bdd', name: 'serenity-junit', version: '1.1.36'
-//	compile group: 'net.serenity-bdd', name: 'serenity-report-resources', version: '1.1.36'
-//	compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.21'
 }
 
 test {
@@ -72,17 +65,17 @@ test {
 	systemProperty "CLARITY_USER_PASSWORD", System.getProperty('CLARITY_USER_PASSWORD')
 
 	testLogging {
-	// add output for all test statuses (but not "started")
-	events "passed", "skipped", "failed", "standardOut", "standardError"
+		// add output for all test statuses (but not "started")
+		events "passed", "skipped", "failed", "standardOut", "standardError"
 
-	// print stdout, stderr to console
-	testLogging.showStandardStreams = true
+		// print stdout, stderr to console
+		testLogging.showStandardStreams = true
 
-	// output exceptions including assertion failure reasons
-	showExceptions = true
-	showCauses = true
-	showStackTraces = false
-	exceptionFormat = 'full'
+		// output exceptions including assertion failure reasons
+		showExceptions = true
+		showCauses = true
+		showStackTraces = false
+		exceptionFormat = 'full'
 	}
 
 	afterTest { desc, result ->
@@ -93,7 +86,7 @@ test {
 
 cucumber {
 	formats = ['pretty', 'html:target/cucumber', 'json:target/cucumber.json']
-	glueDirs = ['clarity/api/env', 'clarity/api/hooks', 'clarity/api/steps']
+	glueDirs = ['clarity.api.steps']
 	featureDirs = ['src/cucumber/resources/features']
 
 //	tags = [ System.getProperty('tags') ] ;
@@ -103,9 +96,10 @@ cucumber {
 	dryRun = false
 	ignoreFailures = false
 
-	jvmOptions {
-		maxHeapSize = '512'
-
+//	jvmOptions {
+//		maxHeapSize = '1024'
 //		environment 'ENV', 'CLARITY-TST'
-	}
+//	}
 }
+
+
