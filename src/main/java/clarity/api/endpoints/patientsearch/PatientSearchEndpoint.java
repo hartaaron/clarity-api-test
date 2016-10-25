@@ -1,13 +1,14 @@
 package clarity.api.endpoints.patientsearch;
 
+import clarity.api.UnirestPrinter;
 import clarity.api.endpoints.ClarityEndpoint;
 import clarity.api.model.ClarityEnvironment;
+import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.http.exceptions.UnirestException;
+import com.mashape.unirest.request.HttpRequest;
 
-import java.net.URLEncoder;
-
-import static org.testng.util.Strings.escapeHtml;
-
+import java.util.HashMap;
 
 public class PatientSearchEndpoint extends ClarityEndpoint
 {
@@ -26,9 +27,10 @@ public class PatientSearchEndpoint extends ClarityEndpoint
 		super(env, path);
 	}
 
-	public void setAccessToken(String x_access_token)
+	public PatientSearchEndpoint setAccessToken(String x_access_token)
 	{
 		requestHeaders.put("x-access-token", x_access_token);
+		return this;
 	}
 
 	public String getQueryString()
@@ -41,12 +43,13 @@ public class PatientSearchEndpoint extends ClarityEndpoint
 		return queryString;
 	}
 
-	public void setQueryString(String queryString)
+	public PatientSearchEndpoint setQueryString(String queryString)
 	{
 		this.queryString = queryString;
+		return this;
 	}
 
-	private String buildQueryString()
+	private PatientSearchEndpoint buildQueryString()
 	{
 		StringBuilder qBuilder = new StringBuilder();
 
@@ -89,7 +92,7 @@ public class PatientSearchEndpoint extends ClarityEndpoint
 
 		queryString = queryStringBuilder.toString();
 
-		return queryString;
+		return this;
 	}
 
 	public String getPatientLastName() { return this.patientLastName; }
@@ -116,13 +119,30 @@ public class PatientSearchEndpoint extends ClarityEndpoint
 		buildQueryString();
 	}
 
-	public void send(String patientLastName, String patientFirstName, String patientDOB)
+	public HttpResponse<String> send(String patientLastName, String patientFirstName, String patientDOB) throws UnirestException
 	{
 		log.write("send...");
 
 		String url = getRequestUrl() + getQueryString();
 		log.write("url: " + url);
-
-		Unirest.get(getRequestUrl() + getQueryString());
+		HashMap<String, String> headers = getRequestHeaders();
+		
+		return Unirest.get(url).asString();
+	}
+	
+	public HttpResponse<String> send(String patientSearchString) throws UnirestException
+	{
+		setQueryString("?size=1000&q=" + urlencode(patientSearchString));
+		String url = getRequestUrl() + getQueryString();
+		log.write("url: " + url);
+		
+		HttpRequest request = Unirest.get(url).headers(getRequestHeaders());
+		
+		UnirestPrinter.printRequest(request);
+		
+		HttpResponse<String> response = request.asString();
+		UnirestPrinter.printResponse(response);
+		
+		return response;
 	}
 }

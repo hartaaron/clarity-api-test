@@ -1,8 +1,12 @@
 package clarity.api.unirest;
 
 import clarity.ClarityApiTestCase;
+import clarity.api.model.ClarityPatient;
+import clarity.api.model.ClarityUser;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -31,5 +35,16 @@ public class UnirestClarityDriverTest extends ClarityApiTestCase
 
 		assertThat(user_id).isNotEmpty();
 		assertThat(x_access_token).isNotEmpty();
+	}
+	
+	@Test
+	public void should_search_for_patients() throws Exception
+	{
+		ClarityUser user = clarity.login(validUser);
+		clarity.setAccessToken(user.x_access_token);
+		
+		List<ClarityPatient> patients = clarity.search("ZZITESTJSM,HARTONE");
+		
+		
 	}
 }

@@ -3,7 +3,6 @@ package clarity.api.steps;
 import clarity.api.unirest.UnirestClarityDriver;
 import clarity.util.Logger;
 import clarity.api.model.*;
-import org.junit.Rule;
 
 import java.util.Properties;
 

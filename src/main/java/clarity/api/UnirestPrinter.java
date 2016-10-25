@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class UnirestPrinter
 {
-	void printUnirestRequest(HttpRequest request) throws IOException
+	public static void printRequest(HttpRequest request)
 	{
 		System.out.println("\n----- REQUEST -----\n");
 		System.out.println(request.getHttpMethod() + " " + request.getUrl());
@@ -24,7 +24,7 @@ public class UnirestPrinter
 		}
 	}
 
-	void printRequestHeaders(HttpRequest request)
+	public static void printRequestHeaders(HttpRequest request)
 	{
 		Map<String, List<String>> headers = request.getHeaders();
 		for(String key : headers.keySet()){
@@ -35,7 +35,7 @@ public class UnirestPrinter
 		}
 	}
 
-	public String formatRequestHeaders(HttpRequest request)
+	public static String formatRequestHeaders(HttpRequest request)
 	{
 		StringBuilder out = new StringBuilder();
 		
@@ -50,7 +50,7 @@ public class UnirestPrinter
 		return out.toString();
 	}
 	
-	void printRequestBody(HttpRequestWithBody request)
+	public static void printRequestBody(HttpRequestWithBody request)
 	{
 		try {
 			InputStream in = request.getBody().getEntity().getContent();
@@ -64,7 +64,7 @@ public class UnirestPrinter
 	}
 
 
-	void printUnirestResponse(HttpResponse response)
+	public static void printResponse(HttpResponse response)
 	{
 		System.out.println("\n----- RESPONSE -----\n");
 		System.out.println(response.getStatus());
@@ -72,7 +72,7 @@ public class UnirestPrinter
 		System.out.println(response.getBody());
 	}
 
-	void printResponseHeaders(HttpResponse response)
+	public static void printResponseHeaders(HttpResponse response)
 	{
 		Map<String, List<String>> headers = response.getHeaders();
 		for(String key : headers.keySet()){

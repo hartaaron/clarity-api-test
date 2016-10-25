@@ -11,7 +11,7 @@ import com.mashape.unirest.http.Unirest;
 
 public class AccessEndpoint extends ClarityEndpoint
 {
-	public static String path = "/mm/v2/token";
+	public static String path = "/mm/v3/token";
 
 	public AccessEndpoint(ClarityEnvironment env)
 	{
@@ -44,6 +44,7 @@ public class AccessEndpoint extends ClarityEndpoint
 
 	public HttpResponse<String> send(ClarityUser user) throws Exception
 	{
+		System.out.println("user: " + user);
 		log.write("*** USER: " + user.toJson());
 		return send(user.email, user.password);
 	}

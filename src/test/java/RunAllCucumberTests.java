@@ -1,5 +1,3 @@
-package clarity;
-
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
 import org.junit.runner.RunWith;
@@ -8,8 +6,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
 		format = { "pretty", "html:target/cucumber", "json:target/cucumber.json" },
 		features = "src/cucumber/resources/features",
-		glue = {  "clarity.api.env", "clarity.api.hooks",  "clarity.api.steps" },
-		tags = { "@Login" }
+		glue = {  "clarity.api.env", "clarity.api.hooks",  "clarity.api.steps" }
 )
-public class RunLoginCucumberTests
+public class RunAllCucumberTests
 {}
