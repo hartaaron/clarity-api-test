@@ -4,9 +4,12 @@ import clarity.ClarityApiTestCase;
 import clarity.api.model.ClarityEnvironment;
 import clarity.api.model.ClarityUser;
 import clarity.api.unirest.UnirestClarityDriver;
+import com.google.gson.internal.LinkedTreeMap;
 import com.mashape.unirest.http.HttpResponse;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -58,12 +61,40 @@ public class PatientSearchEndpoint_Test extends ClarityApiTestCase
 		
 		System.out.println("BODY: " + response.getBody());
 		
-		PatientSearchResponse r = gson.fromJson(response.getBody(), PatientSearchResponse.class);
+		PatientSearchResult r = gson.fromJson(response.getBody(), PatientSearchResult.class);
 		
 		Double totalElements = (Double) r.page.get("totalElements");
 		System.out.println("totalElements: " + totalElements);
 		assertThat(totalElements).isEqualTo(1);
 		
 		assertThat(r.items.size()).isEqualTo(1);
+	}
+	
+	@Test
+	public void  should_have_patient_info_in_response() throws Exception
+	{
+		clarity = new UnirestClarityDriver(env);
+		user = clarity.login(validUser);
+		
+		endpoint = new PatientSearchEndpoint(env);
+		endpoint.setAccessToken(user.x_access_token);
+		
+		endpoint.setQueryString("?size=10&q=ZZITESTSJM,HARTONE");
+		
+		HttpResponse<String> response = endpoint.send();
+		String json = response.getBody();
+		PatientSearchResult result = gson.fromJson(json, PatientSearchResult.class);
+		
+		List<PatientSearchItem> patients = result.getPatients();
+		
+		assertThat(patients.size()).isEqualTo(1);
+		
+		for(PatientSearchItem patient : patients)
+		{
+			log.write("patient: " + patient.name);
+			
+			assertThat(patient.first_name).isEqualTo("HARTONE");
+			assertThat(patient.last_name).isEqualTo("ZZITESTSJM");
+		}
 	}
 }

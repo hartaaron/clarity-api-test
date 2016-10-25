@@ -1,6 +1,5 @@
 package clarity.api.util;
 
-import clarity.api.endpoints.patientsearch.PatientSearchResponse;
 import com.google.gson.Gson;
 //import com.google.gson.GsonBuilder;
 import com.google.gson.GsonBuilder;

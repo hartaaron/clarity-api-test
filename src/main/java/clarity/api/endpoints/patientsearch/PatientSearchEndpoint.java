@@ -118,31 +118,38 @@ public class PatientSearchEndpoint extends ClarityEndpoint
 		this.patientDOB = patientDOB;
 		buildQueryString();
 	}
-
-	public HttpResponse<String> send(String patientLastName, String patientFirstName, String patientDOB) throws UnirestException
-	{
-		log.write("send...");
-
-		String url = getRequestUrl() + getQueryString();
-		log.write("url: " + url);
-		HashMap<String, String> headers = getRequestHeaders();
-		
-		return Unirest.get(url).asString();
-	}
 	
-	public HttpResponse<String> send(String patientSearchString) throws UnirestException
+	public HttpResponse<String> send() throws UnirestException
 	{
-		setQueryString("?size=1000&q=" + urlencode(patientSearchString));
+		if (queryString == null) {
+			buildQueryString();
+		}
+		
 		String url = getRequestUrl() + getQueryString();
-		log.write("url: " + url);
 		
 		HttpRequest request = Unirest.get(url).headers(getRequestHeaders());
-		
 		UnirestPrinter.printRequest(request);
 		
 		HttpResponse<String> response = request.asString();
 		UnirestPrinter.printResponse(response);
 		
 		return response;
+	}
+	
+	public HttpResponse<String> send(String patientLastName, String patientFirstName, String patientDOB) throws UnirestException
+	{
+		this.patientLastName = patientLastName;
+		this.patientFirstName = patientFirstName;
+		this.patientDOB = patientDOB;
+		buildQueryString();
+		
+		return send();
+	}
+	
+	public HttpResponse<String> send(String patientSearchString) throws UnirestException
+	{
+		setQueryString("?size=100&q=" + urlencode(patientSearchString));
+	
+		return send();
 	}
 }

@@ -20,14 +20,9 @@ public class PatientSearchItem
 	public String marital_status_displayable;
 	public Boolean hie_opt_out;
 	
-	public List<Map<String, String>> _links;
+	public Map<String, Object> _links;
 	
 	public Address address;
 
-	public class Address {
-		public String address1;
-		public String city;
-		public String state;
-		public String zip;
-	}
+
 }

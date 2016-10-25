@@ -4,7 +4,7 @@ import clarity.api.endpoints.ClarityResponseBody;
 import clarity.api.endpoints.access.AccessEndpoint;
 import clarity.api.endpoints.access.AccessData;
 import clarity.api.endpoints.patientsearch.PatientSearchEndpoint;
-import clarity.api.endpoints.patientsearch.PatientSearchResponse;
+import clarity.api.endpoints.patientsearch.PatientSearchResult;
 import clarity.api.model.ClarityPatient;
 import clarity.util.Logger;
 import clarity.api.model.ClarityEnvironment;
@@ -94,7 +94,7 @@ public class UnirestClarityDriver
 		log.write("response body: " + body);
 		
 		
-		PatientSearchResponse p = new Gson().fromJson(body, PatientSearchResponse.class);
+		PatientSearchResult p = new Gson().fromJson(body, PatientSearchResult.class);
 		log.write("===========================\n" + p.toString());
 		
 		return patients;
