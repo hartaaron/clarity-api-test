@@ -95,6 +95,8 @@ public class PatientSearchEndpoint_Test extends ClarityApiTestCase
 			
 			assertThat(patient.first_name).isEqualTo("HARTONE");
 			assertThat(patient.last_name).isEqualTo("ZZITESTSJM");
+			
+			log.write("links: " + patient._links);
 		}
 	}
 }

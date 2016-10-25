@@ -1,6 +1,7 @@
 package clarity.api.unirest;
 
 import clarity.ClarityApiTestCase;
+import clarity.api.endpoints.patientsearch.PatientSearchItem;
 import clarity.api.model.ClarityPatient;
 import clarity.api.model.ClarityUser;
 import org.junit.Before;
@@ -43,7 +44,14 @@ public class UnirestClarityDriverTest extends ClarityApiTestCase
 		ClarityUser user = clarity.login(validUser);
 		clarity.setAccessToken(user.x_access_token);
 		
-		List<ClarityPatient> patients = clarity.search("ZZITESTJSM,HARTONE");
+		List<PatientSearchItem> patients = clarity.patientSearch("ZZITESTSJM,HARTONE");
+		
+		assertThat(patients.size()).isEqualTo(1);
+		PatientSearchItem patient = patients.get(0);
+		
+		assertThat(patient.first_name).isEqualTo("HARTONE");
+		assertThat(patient.last_name).isEqualTo("ZZITESTSJM");
+		
 		
 		
 	}

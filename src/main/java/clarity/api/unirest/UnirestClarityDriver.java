@@ -4,6 +4,7 @@ import clarity.api.endpoints.ClarityResponseBody;
 import clarity.api.endpoints.access.AccessEndpoint;
 import clarity.api.endpoints.access.AccessData;
 import clarity.api.endpoints.patientsearch.PatientSearchEndpoint;
+import clarity.api.endpoints.patientsearch.PatientSearchItem;
 import clarity.api.endpoints.patientsearch.PatientSearchResult;
 import clarity.api.model.ClarityPatient;
 import clarity.util.Logger;
@@ -70,38 +71,27 @@ public class UnirestClarityDriver
 		return user;
 	}
 	
-	public List<ClarityPatient> search(String patientSearchString) throws UnirestException
-	{
-		ArrayList<ClarityPatient> patients = new ArrayList<>();
-		
-		PatientSearchEndpoint patientSearchEndpoint = new PatientSearchEndpoint(env);
-		
-		patientSearchEndpoint.setAccessToken(user.x_access_token);
-		System.out.println("patientSearchEndpoint.headers: " + patientSearchEndpoint.getRequestHeaders());
-		
-		patientSearchEndpoint.setQueryString(patientSearchString);
-		
-		HttpResponse<String> response = patientSearchEndpoint.send(patientSearchString);
-		
-		String status = response.getStatusText();
-		log.write("response status: " + status);
-		if (response.getStatus() != 200) {
-			log.write("patient search error");
-			return null;
-		}
-		
-		String body = response.getBody();
-		log.write("response body: " + body);
-		
-		
-		PatientSearchResult p = new Gson().fromJson(body, PatientSearchResult.class);
-		log.write("===========================\n" + p.toString());
-		
-		return patients;
-	}
-	
 	public void setAccessToken(String accessToken)
 	{
 		this.user.x_access_token = accessToken;
+	}
+	
+	public List<PatientSearchItem> patientSearch(String patientSearchString) throws UnirestException
+	{
+		if (user.x_access_token == null)
+		{
+			throw new RuntimeException("user must first login and have x-acccess-token set");
+		}
+		
+		PatientSearchEndpoint endpoint = new PatientSearchEndpoint(env);
+		endpoint.setAccessToken(user.x_access_token);
+		endpoint.setQueryString("?size=100&q=" + endpoint.urlencode(patientSearchString));
+		
+		HttpResponse<String> response = endpoint.send();
+		String json = response.getBody();
+		PatientSearchResult result = gson.fromJson(json, PatientSearchResult.class);
+		
+		List<PatientSearchItem> patients = result.getPatients();
+		return patients;
 	}
 }
