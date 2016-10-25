@@ -76,16 +76,34 @@ public class UnirestClarityDriver
 		this.user.x_access_token = accessToken;
 	}
 	
-	public List<PatientSearchItem> patientSearch(String patientSearchString) throws UnirestException
+	public List<PatientSearchItem> patientSearch(String lastName, String firstName, String birthDate) throws UnirestException
 	{
-		if (user.x_access_token == null)
+		if (! user.hasToken())
 		{
 			throw new RuntimeException("user must first login and have x-acccess-token set");
 		}
 		
 		PatientSearchEndpoint endpoint = new PatientSearchEndpoint(env);
 		endpoint.setAccessToken(user.x_access_token);
-		endpoint.setQueryString("?size=100&q=" + endpoint.urlencode(patientSearchString));
+		
+		HttpResponse<String> response = endpoint.send(lastName, firstName, birthDate);
+		String json = response.getBody();
+		PatientSearchResult result = gson.fromJson(json, PatientSearchResult.class);
+		
+		List<PatientSearchItem> patients = result.getPatients();
+		return patients;
+	}
+	
+	public List<PatientSearchItem> patientSearch(String patientSearchString) throws UnirestException
+	{
+		if (! user.hasToken())
+		{
+			throw new RuntimeException("user must first login and have x-acccess-token set");
+		}
+		
+		PatientSearchEndpoint endpoint = new PatientSearchEndpoint(env);
+		endpoint.setAccessToken(user.x_access_token);
+		endpoint.setQueryString("size=100&q=" + endpoint.urlencode(patientSearchString));
 		
 		HttpResponse<String> response = endpoint.send();
 		String json = response.getBody();

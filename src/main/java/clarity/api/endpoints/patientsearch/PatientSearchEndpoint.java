@@ -54,23 +54,23 @@ public class PatientSearchEndpoint extends ClarityEndpoint
 		StringBuilder qBuilder = new StringBuilder();
 
 		if (patientLastName != null) {
-			qBuilder.append(urlencode(patientLastName));
+			qBuilder.append(patientLastName);
 		}
 		if (patientFirstName != null) {
 			if (qBuilder.length() > 0) {
 				qBuilder.append(",");
 			}
-			qBuilder.append(urlencode(patientFirstName));
+			qBuilder.append(patientFirstName);
 		}
 
 		if (patientDOB != null) {
 			if (qBuilder.length() > 0) {
 				qBuilder.append(",");
 			}
-			qBuilder.append(urlencode(patientDOB));
+			qBuilder.append(patientDOB);
 		}
 
-		String q = qBuilder.toString();
+		String q = urlencode(qBuilder.toString());
 
 		StringBuilder queryStringBuilder = new StringBuilder();
 
@@ -125,7 +125,7 @@ public class PatientSearchEndpoint extends ClarityEndpoint
 			buildQueryString();
 		}
 		
-		String url = getRequestUrl() + getQueryString();
+		String url = getRequestUrl() + "?" + getQueryString();
 		
 		HttpRequest request = Unirest.get(url).headers(getRequestHeaders());
 		UnirestPrinter.printRequest(request);
@@ -148,8 +148,7 @@ public class PatientSearchEndpoint extends ClarityEndpoint
 	
 	public HttpResponse<String> send(String patientSearchString) throws UnirestException
 	{
-		setQueryString("?size=100&q=" + urlencode(patientSearchString));
-	
+		setQueryString("size=100&q=" + urlencode(patientSearchString));
 		return send();
 	}
 }
