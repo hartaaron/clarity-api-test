@@ -1,7 +1,0 @@
-node_modules/
-
-.npm/
-build/
-
-npm_debug.log*
-

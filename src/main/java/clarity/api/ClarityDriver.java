@@ -1,6 +1,12 @@
 package clarity.api;
 
+import clarity.api.endpoints.breakglass.BreakGlassReason;
+import clarity.api.model.ClarityPatient;
+import clarity.api.model.ClarityUser;
+import clarity.api.model.PatientAccess;
+
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public interface ClarityDriver
@@ -13,18 +19,16 @@ public interface ClarityDriver
 		put("Accept", APPLICATION_JSON);
 	}};
 
-	// management
-	void getManagementInfo();
+//	void getManagementInfo();
 
-	// user
-	void logIn(String username, String password);
-	void logOut();
-	void resetPassword(String username, String password);
-	void getUserSettings();
-	void getUserRoles(String user_id);
+	ClarityUser login(String username, String password) throws Exception;
+//	void logOut();
+//	void resetPassword(String username, String password);
+//	void getUserInfo();
+//	void getUserRoles(String user_id);
 
 	// search for patient
-	void searchForPatients(String lastName, String firstName, String birthDate);
-	void getPatient(String patientName);
-	void breakGlass(String user_id, String patient_id, String reason, String otherReason);
+	List<ClarityPatient> searchForPatients(String lastName, String firstName, String birthDate) throws Exception;
+	PatientAccess breakGlass(String uid, BreakGlassReason reason, String otherReason) throws Exception;
+	ClarityPatient getPatient(String patientName);
 }

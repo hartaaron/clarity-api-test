@@ -1,9 +1,9 @@
 package clarity.api.model;
 
 import clarity.api.endpoints.JsonEntity;
-import clarity.util.Logger;
+import clarity.util.ClarityLogger;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import org.apache.logging.log4j.core.Logger;
 
 public abstract class ClarityModelObject extends JsonEntity<ClarityModelObject>
 {
@@ -13,6 +13,6 @@ public abstract class ClarityModelObject extends JsonEntity<ClarityModelObject>
 	public ClarityModelObject()
 	{
 		super();
-		log = new Logger(this.getClass());
+		log = ClarityLogger.create(this);
 	}
 }

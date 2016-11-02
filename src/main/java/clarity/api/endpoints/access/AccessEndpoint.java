@@ -23,15 +23,14 @@ public class AccessEndpoint extends ClarityEndpoint
 		String requestUrl = getRequestUrl();
 		String requestBody = credentials.toJson();
 		
-		log.write("request URL: " + requestUrl);
-		log.write("request headers: " + getRequestHeaders());
-		log.write("request body: " + requestBody);
+		log.debug("request URL: " + requestUrl);
+		log.debug("request headers: " + getRequestHeaders());
+		log.debug("request body: " + requestBody);
 		
 		response = post(getRequestUrl(), getRequestHeaders(), requestBody);
-		String responseJson = response.getBody();
 		
-		log.write("response status: " + response.getStatus() + " " + response.getStatusText());
-		log.write("response json: " + responseJson);
+		log.debug("response status: " + response.getStatus() + " " + response.getStatusText());
+		log.debug("response json: " + response.getBody());
 
 		return response;
 	}
@@ -45,7 +44,7 @@ public class AccessEndpoint extends ClarityEndpoint
 	public HttpResponse<String> send(ClarityUser user) throws Exception
 	{
 		System.out.println("user: " + user);
-		log.write("*** USER: " + user.toJson());
+		log.debug("*** USER: " + user.toJson());
 		return send(user.email, user.password);
 	}
 

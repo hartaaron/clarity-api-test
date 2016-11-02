@@ -35,6 +35,8 @@ public class ClarityEnvironment
 
 	public static ClarityEnvironment get(String name)
 	{
+		name = name.toUpperCase();
+		
 		if (environments.keySet().contains(name)) {
 			return environments.get(name);
 		}

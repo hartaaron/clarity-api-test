@@ -2,6 +2,7 @@ package clarity.api.endpoints.patientsearch;
 
 import clarity.ClarityApiTestCase;
 import clarity.api.model.ClarityEnvironment;
+import clarity.api.model.ClarityPatient;
 import clarity.api.model.ClarityUser;
 import clarity.api.unirest.UnirestClarityDriver;
 import com.google.gson.internal.LinkedTreeMap;
@@ -51,7 +52,7 @@ public class PatientSearchEndpoint_Test extends ClarityApiTestCase
 		clarity = new UnirestClarityDriver(env);
 		user = clarity.login(validUser);
 		
-		endpoint.setAccessToken(user.x_access_token);
+		endpoint.setAccessToken(user.access.token);
 //		endpoint.setQueryString("size=100&q=ZZITESTSJM");
 		
 		HttpResponse<String> response = endpoint.send("size=10&q=ZZITESTSJM,HARTONE");
@@ -77,7 +78,7 @@ public class PatientSearchEndpoint_Test extends ClarityApiTestCase
 		user = clarity.login(validUser);
 		
 		endpoint = new PatientSearchEndpoint(env);
-		endpoint.setAccessToken(user.x_access_token);
+		endpoint.setAccessToken(user.access.token);
 		
 		endpoint.setQueryString("?size=10&q=ZZITESTSJM,HARTONE");
 		
@@ -85,18 +86,18 @@ public class PatientSearchEndpoint_Test extends ClarityApiTestCase
 		String json = response.getBody();
 		PatientSearchResult result = gson.fromJson(json, PatientSearchResult.class);
 		
-		List<PatientSearchItem> patients = result.getPatients();
+		List<ClarityPatient> patients = result.getPatients();
 		
 		assertThat(patients.size()).isEqualTo(1);
 		
-		for(PatientSearchItem patient : patients)
+		for(ClarityPatient patient : patients)
 		{
-			log.write("patient: " + patient.name);
+			log.debug("patient: " + patient.name);
 			
 			assertThat(patient.first_name).isEqualTo("HARTONE");
 			assertThat(patient.last_name).isEqualTo("ZZITESTSJM");
 			
-			log.write("links: " + patient._links);
+			log.debug("links: " + patient._links);
 		}
 	}
 }

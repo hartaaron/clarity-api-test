@@ -1,6 +1,7 @@
 package clarity.api.endpoints.patientsearch;
 
 import clarity.api.endpoints.JsonEntity;
+import clarity.api.model.ClarityPatient;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -21,15 +22,15 @@ public class PatientSearchResult extends JsonEntity<PatientSearchResult>
 	
 	public HashMap<String, Object> page;
 	
-	public List<PatientSearchItem> getPatients()
+	public List<ClarityPatient> getPatients()
 	{
-		List<PatientSearchItem> patients;
+		List<ClarityPatient> patients;
 		
 		String itemsJson = gson.toJson(items);
 	
 		Gson gson = new GsonBuilder().setLenient().create();
 		
-		Type type = new TypeToken<ArrayList<PatientSearchItem>>(){}.getType();
+		Type type = new TypeToken<ArrayList<ClarityPatient>>(){}.getType();
 		patients = gson.fromJson(itemsJson, type);
 		
 		return patients;

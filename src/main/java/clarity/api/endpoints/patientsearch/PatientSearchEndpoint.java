@@ -3,6 +3,7 @@ package clarity.api.endpoints.patientsearch;
 import clarity.api.UnirestPrinter;
 import clarity.api.endpoints.ClarityEndpoint;
 import clarity.api.model.ClarityEnvironment;
+import clarity.api.model.ClarityPatient;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
@@ -13,7 +14,7 @@ import java.util.HashMap;
 public class PatientSearchEndpoint extends ClarityEndpoint
 {
 	public static String path = "/api/v1/patients";
-
+	
 	private String patientFirstName;
 	private String patientLastName;
 	private String patientDOB;
@@ -136,11 +137,23 @@ public class PatientSearchEndpoint extends ClarityEndpoint
 		return response;
 	}
 	
+	public HttpResponse<String> send(ClarityPatient patient) throws UnirestException
+	{
+		patientLastName = patient.last_name;
+		patientFirstName = patient.first_name;
+		patientDOB = patient.dob;
+		
+		buildQueryString();
+		
+		return send();
+	}
+	
 	public HttpResponse<String> send(String patientLastName, String patientFirstName, String patientDOB) throws UnirestException
 	{
 		this.patientLastName = patientLastName;
 		this.patientFirstName = patientFirstName;
 		this.patientDOB = patientDOB;
+		
 		buildQueryString();
 		
 		return send();
@@ -149,6 +162,7 @@ public class PatientSearchEndpoint extends ClarityEndpoint
 	public HttpResponse<String> send(String patientSearchString) throws UnirestException
 	{
 		setQueryString("size=100&q=" + urlencode(patientSearchString));
+		
 		return send();
 	}
 }

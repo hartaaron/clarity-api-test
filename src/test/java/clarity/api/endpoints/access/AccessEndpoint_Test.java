@@ -32,9 +32,9 @@ public class AccessEndpoint_Test extends ClarityApiTestCase
 	public void provides_access_token_to_valid_user() throws Exception
 	{
 		ClarityUser user = validUser;
-		log.write("user: " + user);
-		log.write("email: " + user.email);
-		log.write("password: " + user.password);
+		log.debug("user: " + user);
+		log.debug("email: " + user.email);
+		log.debug("password: " + user.password);
 
 		HttpResponse<String> response = endpoint.send(user.email, user.password);
 
@@ -51,9 +51,9 @@ public class AccessEndpoint_Test extends ClarityApiTestCase
 
 		System.out.println("===>>" + body.data.toString());
 
-		AccessData data = new AccessData().fromJson(body.data.toString());
+		UserAccess data = new UserAccess().fromJson(body.data.toString());
 		check.assertThat(data.user_id).isNotNull();
-		check.assertThat(data.x_access_token).isNotNull();
+		check.assertThat(data.token).isNotNull();
 	}
 
 	@Test

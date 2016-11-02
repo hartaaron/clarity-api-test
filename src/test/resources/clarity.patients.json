@@ -1,0 +1,555 @@
+[{
+	"uid": "b022b3b1-0624-4104-808b-b781dc0336ff",
+	"dob": "1923-12-13",
+	"sex": "F",
+	"address": {
+		"city": "FULLINGTON",
+		"address1": "1000 JAMESBOND DR",
+		"state": "CA",
+		"zip": "92838"
+	},
+	"name": "HARTONE,TESTSFM",
+	"_links": {
+		"allergy_info_docs": {
+			"href": "https://10.0.100.107/v1/patients/b022b3b1-0624-4104-808b-b781dc0336ff/allergy-info-docs"
+		},
+		"immunizations": {
+			"href": "https://10.0.100.107/v1/patients/b022b3b1-0624-4104-808b-b781dc0336ff/immunizations"
+		},
+		"medications": {
+			"href": "https://10.0.100.107/v1/patients/b022b3b1-0624-4104-808b-b781dc0336ff/medications"
+		},
+		"problems": {
+			"href": "https://10.0.100.107/v1/patients/b022b3b1-0624-4104-808b-b781dc0336ff/problems"
+		},
+		"vitals": {
+			"href": "https://10.0.100.107/v1/patients/b022b3b1-0624-4104-808b-b781dc0336ff/vitals"
+		},
+		"lab_tests": {
+			"href": "https://10.0.100.107/v1/patients/b022b3b1-0624-4104-808b-b781dc0336ff/lab-tests"
+		},
+		"lab_test_reports": {
+			"href": "https://10.0.100.107/v1/patients/b022b3b1-0624-4104-808b-b781dc0336ff/lab-test-reports"
+		},
+		"pathology_tests": {
+			"href": "https://10.0.100.107/v1/patients/b022b3b1-0624-4104-808b-b781dc0336ff/pathology-tests"
+		},
+		"microbiology_tests": {
+			"href": "https://10.0.100.107/v1/patients/b022b3b1-0624-4104-808b-b781dc0336ff/microbiology-tests"
+		},
+		"bloodbank_tests": {
+			"href": "https://10.0.100.107/v1/patients/b022b3b1-0624-4104-808b-b781dc0336ff/bloodbank-tests"
+		},
+		"self": {
+			"href": "https://10.0.100.107/v1/patients/b022b3b1-0624-4104-808b-b781dc0336ff"
+		}
+	},
+	"ssn": "000-00-0007",
+	"marital_status": "W",
+	"marital_status_displayable": "Widowed",
+	"first_name": "HARTONE",
+	"last_name": "TESTSFM",
+	"middle_name": "M",
+	"home_phone": "919-000-0001",
+	"business_phone": "919-000-0001",
+	"phone_number": "919-000-0001",
+	"preferred_language": "English",
+	"smoking_status": "Never A Smoker",
+	"hie_opt_out": true
+}, {
+	"uid": "a40e00ef-d188-43fa-ab07-0f4bb3758998",
+	"dob": "1924-01-11",
+	"sex": "M",
+	"address": {
+		"city": "ORANGE",
+		"address1": "1212 SLATE AVE",
+		"state": "CA",
+		"zip": "92782"
+	},
+	"name": "HARTONE,TESTSJM",
+	"_links": {
+		"allergy_info_docs": {
+			"href": "https://10.0.100.107/v1/patients/a40e00ef-d188-43fa-ab07-0f4bb3758998/allergy-info-docs"
+		},
+		"immunizations": {
+			"href": "https://10.0.100.107/v1/patients/a40e00ef-d188-43fa-ab07-0f4bb3758998/immunizations"
+		},
+		"medications": {
+			"href": "https://10.0.100.107/v1/patients/a40e00ef-d188-43fa-ab07-0f4bb3758998/medications"
+		},
+		"problems": {
+			"href": "https://10.0.100.107/v1/patients/a40e00ef-d188-43fa-ab07-0f4bb3758998/problems"
+		},
+		"vitals": {
+			"href": "https://10.0.100.107/v1/patients/a40e00ef-d188-43fa-ab07-0f4bb3758998/vitals"
+		},
+		"lab_tests": {
+			"href": "https://10.0.100.107/v1/patients/a40e00ef-d188-43fa-ab07-0f4bb3758998/lab-tests"
+		},
+		"lab_test_reports": {
+			"href": "https://10.0.100.107/v1/patients/a40e00ef-d188-43fa-ab07-0f4bb3758998/lab-test-reports"
+		},
+		"pathology_tests": {
+			"href": "https://10.0.100.107/v1/patients/a40e00ef-d188-43fa-ab07-0f4bb3758998/pathology-tests"
+		},
+		"microbiology_tests": {
+			"href": "https://10.0.100.107/v1/patients/a40e00ef-d188-43fa-ab07-0f4bb3758998/microbiology-tests"
+		},
+		"bloodbank_tests": {
+			"href": "https://10.0.100.107/v1/patients/a40e00ef-d188-43fa-ab07-0f4bb3758998/bloodbank-tests"
+		},
+		"self": {
+			"href": "https://10.0.100.107/v1/patients/a40e00ef-d188-43fa-ab07-0f4bb3758998"
+		}
+	},
+	"ssn": "111-22-3333",
+	"marital_status": "W",
+	"marital_status_displayable": "Widowed",
+	"first_name": "HARTONE",
+	"last_name": "TESTSJM",
+	"home_phone": "714-714-7147",
+	"business_phone": "714-714-7147",
+	"phone_number": "714-714-7147",
+	"preferred_language": "English",
+	"smoking_status": "Former Smoker",
+	"hie_opt_out": true
+}, {
+	"uid": "fa92252f-7bf2-442a-b3ff-8c26bb8f73fe",
+	"dob": "1982-01-01",
+	"sex": "M",
+	"address": {
+		"city": "Anaheim",
+		"address1": "2620 N 6th Ave",
+		"state": "CA",
+		"zip": "92805"
+	},
+	"name": "HARTONE,ZZHTESTSFM",
+	"_links": {
+		"allergy_info_docs": {
+			"href": "https://10.0.100.107/v1/patients/fa92252f-7bf2-442a-b3ff-8c26bb8f73fe/allergy-info-docs"
+		},
+		"immunizations": {
+			"href": "https://10.0.100.107/v1/patients/fa92252f-7bf2-442a-b3ff-8c26bb8f73fe/immunizations"
+		},
+		"medications": {
+			"href": "https://10.0.100.107/v1/patients/fa92252f-7bf2-442a-b3ff-8c26bb8f73fe/medications"
+		},
+		"problems": {
+			"href": "https://10.0.100.107/v1/patients/fa92252f-7bf2-442a-b3ff-8c26bb8f73fe/problems"
+		},
+		"vitals": {
+			"href": "https://10.0.100.107/v1/patients/fa92252f-7bf2-442a-b3ff-8c26bb8f73fe/vitals"
+		},
+		"lab_tests": {
+			"href": "https://10.0.100.107/v1/patients/fa92252f-7bf2-442a-b3ff-8c26bb8f73fe/lab-tests"
+		},
+		"lab_test_reports": {
+			"href": "https://10.0.100.107/v1/patients/fa92252f-7bf2-442a-b3ff-8c26bb8f73fe/lab-test-reports"
+		},
+		"pathology_tests": {
+			"href": "https://10.0.100.107/v1/patients/fa92252f-7bf2-442a-b3ff-8c26bb8f73fe/pathology-tests"
+		},
+		"microbiology_tests": {
+			"href": "https://10.0.100.107/v1/patients/fa92252f-7bf2-442a-b3ff-8c26bb8f73fe/microbiology-tests"
+		},
+		"bloodbank_tests": {
+			"href": "https://10.0.100.107/v1/patients/fa92252f-7bf2-442a-b3ff-8c26bb8f73fe/bloodbank-tests"
+		},
+		"self": {
+			"href": "https://10.0.100.107/v1/patients/fa92252f-7bf2-442a-b3ff-8c26bb8f73fe"
+		}
+	},
+	"ssn": "234-56-7654",
+	"marital_status": "M",
+	"marital_status_displayable": "Married",
+	"first_name": "HARTONE",
+	"last_name": "ZZHTESTSFM",
+	"home_phone": "787-878-9098",
+	"business_phone": "787-878-9098",
+	"phone_number": "787-878-9098",
+	"preferred_language": "English",
+	"hie_opt_out": true
+}, {
+	"uid": "306c3235-8dee-4f7b-8461-53e79640cfc2",
+	"dob": "1910-03-01",
+	"sex": "M",
+	"address": {
+		"city": "ANAHEIM",
+		"address1": "123 HART DR",
+		"state": "CA",
+		"zip": "92832"
+	},
+	"name": "HARTONE,ZZITESTHART",
+	"_links": {
+		"allergy_info_docs": {
+			"href": "https://10.0.100.107/v1/patients/306c3235-8dee-4f7b-8461-53e79640cfc2/allergy-info-docs"
+		},
+		"immunizations": {
+			"href": "https://10.0.100.107/v1/patients/306c3235-8dee-4f7b-8461-53e79640cfc2/immunizations"
+		},
+		"medications": {
+			"href": "https://10.0.100.107/v1/patients/306c3235-8dee-4f7b-8461-53e79640cfc2/medications"
+		},
+		"problems": {
+			"href": "https://10.0.100.107/v1/patients/306c3235-8dee-4f7b-8461-53e79640cfc2/problems"
+		},
+		"vitals": {
+			"href": "https://10.0.100.107/v1/patients/306c3235-8dee-4f7b-8461-53e79640cfc2/vitals"
+		},
+		"lab_tests": {
+			"href": "https://10.0.100.107/v1/patients/306c3235-8dee-4f7b-8461-53e79640cfc2/lab-tests"
+		},
+		"lab_test_reports": {
+			"href": "https://10.0.100.107/v1/patients/306c3235-8dee-4f7b-8461-53e79640cfc2/lab-test-reports"
+		},
+		"pathology_tests": {
+			"href": "https://10.0.100.107/v1/patients/306c3235-8dee-4f7b-8461-53e79640cfc2/pathology-tests"
+		},
+		"microbiology_tests": {
+			"href": "https://10.0.100.107/v1/patients/306c3235-8dee-4f7b-8461-53e79640cfc2/microbiology-tests"
+		},
+		"bloodbank_tests": {
+			"href": "https://10.0.100.107/v1/patients/306c3235-8dee-4f7b-8461-53e79640cfc2/bloodbank-tests"
+		},
+		"self": {
+			"href": "https://10.0.100.107/v1/patients/306c3235-8dee-4f7b-8461-53e79640cfc2"
+		}
+	},
+	"ssn": "123-25-1634",
+	"marital_status": "S",
+	"marital_status_displayable": "Single",
+	"first_name": "HARTONE",
+	"last_name": "ZZITESTHART",
+	"home_phone": "123-321-1234",
+	"business_phone": "123-321-1234",
+	"phone_number": "123-321-1234",
+	"preferred_language": "English",
+	"hie_opt_out": true
+}, {
+	"uid": "29849988-63c3-47fe-93f2-9152fdfa3c25",
+	"dob": "1950-01-01",
+	"sex": "U",
+	"address": {
+		"city": "HOLLYWOOD",
+		"address1": "3456 Universal STUDIOS",
+		"state": "CA",
+		"zip": "88888"
+	},
+	"name": "HARTONE,ZZITESTONE",
+	"_links": {
+		"allergy_info_docs": {
+			"href": "https://10.0.100.107/v1/patients/29849988-63c3-47fe-93f2-9152fdfa3c25/allergy-info-docs"
+		},
+		"immunizations": {
+			"href": "https://10.0.100.107/v1/patients/29849988-63c3-47fe-93f2-9152fdfa3c25/immunizations"
+		},
+		"medications": {
+			"href": "https://10.0.100.107/v1/patients/29849988-63c3-47fe-93f2-9152fdfa3c25/medications"
+		},
+		"problems": {
+			"href": "https://10.0.100.107/v1/patients/29849988-63c3-47fe-93f2-9152fdfa3c25/problems"
+		},
+		"vitals": {
+			"href": "https://10.0.100.107/v1/patients/29849988-63c3-47fe-93f2-9152fdfa3c25/vitals"
+		},
+		"lab_tests": {
+			"href": "https://10.0.100.107/v1/patients/29849988-63c3-47fe-93f2-9152fdfa3c25/lab-tests"
+		},
+		"lab_test_reports": {
+			"href": "https://10.0.100.107/v1/patients/29849988-63c3-47fe-93f2-9152fdfa3c25/lab-test-reports"
+		},
+		"pathology_tests": {
+			"href": "https://10.0.100.107/v1/patients/29849988-63c3-47fe-93f2-9152fdfa3c25/pathology-tests"
+		},
+		"microbiology_tests": {
+			"href": "https://10.0.100.107/v1/patients/29849988-63c3-47fe-93f2-9152fdfa3c25/microbiology-tests"
+		},
+		"bloodbank_tests": {
+			"href": "https://10.0.100.107/v1/patients/29849988-63c3-47fe-93f2-9152fdfa3c25/bloodbank-tests"
+		},
+		"self": {
+			"href": "https://10.0.100.107/v1/patients/29849988-63c3-47fe-93f2-9152fdfa3c25"
+		}
+	},
+	"ssn": "222-22-2113",
+	"marital_status": "M",
+	"marital_status_displayable": "Married",
+	"first_name": "HARTONE",
+	"last_name": "ZZITESTONE",
+	"home_phone": "222-777-7733",
+	"business_phone": "222-777-7733",
+	"phone_number": "222-777-7733",
+	"preferred_language": "German",
+	"hie_opt_out": true
+}, {
+	"uid": "64d8ec10-ee33-4a1c-93fd-36a505a0c9bf",
+	"dob": "1967-01-11",
+	"sex": "U",
+	"address": {
+		"city": "HOLLYWOOD",
+		"address1": "3000 11th Ave",
+		"state": "CA",
+		"zip": "80001"
+	},
+	"name": "HARTONE,ZZITESTONE",
+	"_links": {
+		"allergy_info_docs": {
+			"href": "https://10.0.100.107/v1/patients/64d8ec10-ee33-4a1c-93fd-36a505a0c9bf/allergy-info-docs"
+		},
+		"immunizations": {
+			"href": "https://10.0.100.107/v1/patients/64d8ec10-ee33-4a1c-93fd-36a505a0c9bf/immunizations"
+		},
+		"medications": {
+			"href": "https://10.0.100.107/v1/patients/64d8ec10-ee33-4a1c-93fd-36a505a0c9bf/medications"
+		},
+		"problems": {
+			"href": "https://10.0.100.107/v1/patients/64d8ec10-ee33-4a1c-93fd-36a505a0c9bf/problems"
+		},
+		"vitals": {
+			"href": "https://10.0.100.107/v1/patients/64d8ec10-ee33-4a1c-93fd-36a505a0c9bf/vitals"
+		},
+		"lab_tests": {
+			"href": "https://10.0.100.107/v1/patients/64d8ec10-ee33-4a1c-93fd-36a505a0c9bf/lab-tests"
+		},
+		"lab_test_reports": {
+			"href": "https://10.0.100.107/v1/patients/64d8ec10-ee33-4a1c-93fd-36a505a0c9bf/lab-test-reports"
+		},
+		"pathology_tests": {
+			"href": "https://10.0.100.107/v1/patients/64d8ec10-ee33-4a1c-93fd-36a505a0c9bf/pathology-tests"
+		},
+		"microbiology_tests": {
+			"href": "https://10.0.100.107/v1/patients/64d8ec10-ee33-4a1c-93fd-36a505a0c9bf/microbiology-tests"
+		},
+		"bloodbank_tests": {
+			"href": "https://10.0.100.107/v1/patients/64d8ec10-ee33-4a1c-93fd-36a505a0c9bf/bloodbank-tests"
+		},
+		"self": {
+			"href": "https://10.0.100.107/v1/patients/64d8ec10-ee33-4a1c-93fd-36a505a0c9bf"
+		}
+	},
+	"ssn": "000-22-2113",
+	"marital_status": "S",
+	"marital_status_displayable": "Single",
+	"first_name": "HARTONE",
+	"last_name": "ZZITESTONE",
+	"home_phone": "222-777-0001",
+	"business_phone": "222-777-0001",
+	"phone_number": "222-777-0001",
+	"preferred_language": "Hungarian",
+	"smoking_status": "Never A Smoker",
+	"hie_opt_out": true
+}, {
+	"uid": "93a1b2db-7426-43f8-9fdf-b84f8856bfa5",
+	"dob": "1980-01-05",
+	"sex": "F",
+	"address": {
+		"city": "SPOKANE",
+		"address1": "222 LANE",
+		"state": "WA",
+		"zip": "99037"
+	},
+	"name": "HARTONE,ZZITESTSFM",
+	"_links": {
+		"allergy_info_docs": {
+			"href": "https://10.0.100.107/v1/patients/93a1b2db-7426-43f8-9fdf-b84f8856bfa5/allergy-info-docs"
+		},
+		"immunizations": {
+			"href": "https://10.0.100.107/v1/patients/93a1b2db-7426-43f8-9fdf-b84f8856bfa5/immunizations"
+		},
+		"medications": {
+			"href": "https://10.0.100.107/v1/patients/93a1b2db-7426-43f8-9fdf-b84f8856bfa5/medications"
+		},
+		"problems": {
+			"href": "https://10.0.100.107/v1/patients/93a1b2db-7426-43f8-9fdf-b84f8856bfa5/problems"
+		},
+		"vitals": {
+			"href": "https://10.0.100.107/v1/patients/93a1b2db-7426-43f8-9fdf-b84f8856bfa5/vitals"
+		},
+		"lab_tests": {
+			"href": "https://10.0.100.107/v1/patients/93a1b2db-7426-43f8-9fdf-b84f8856bfa5/lab-tests"
+		},
+		"lab_test_reports": {
+			"href": "https://10.0.100.107/v1/patients/93a1b2db-7426-43f8-9fdf-b84f8856bfa5/lab-test-reports"
+		},
+		"pathology_tests": {
+			"href": "https://10.0.100.107/v1/patients/93a1b2db-7426-43f8-9fdf-b84f8856bfa5/pathology-tests"
+		},
+		"microbiology_tests": {
+			"href": "https://10.0.100.107/v1/patients/93a1b2db-7426-43f8-9fdf-b84f8856bfa5/microbiology-tests"
+		},
+		"bloodbank_tests": {
+			"href": "https://10.0.100.107/v1/patients/93a1b2db-7426-43f8-9fdf-b84f8856bfa5/bloodbank-tests"
+		},
+		"self": {
+			"href": "https://10.0.100.107/v1/patients/93a1b2db-7426-43f8-9fdf-b84f8856bfa5"
+		}
+	},
+	"ssn": "999-88-1212",
+	"marital_status": "S",
+	"marital_status_displayable": "Single",
+	"first_name": "HARTONE",
+	"last_name": "ZZITESTSFM",
+	"home_phone": "999-888-1212",
+	"business_phone": "999-888-1212",
+	"phone_number": "999-888-1212",
+	"preferred_language": "English",
+	"hie_opt_out": true
+}, {
+	"uid": "389f64a3-f6b7-4c69-82b8-89a30bf3f0f8",
+	"dob": "1922-12-02",
+	"sex": "F",
+	"address": {
+		"city": "CA",
+		"address1": "910 Hart Way Orange, CA 92865",
+		"state": "CA",
+		"zip": "92865"
+	},
+	"name": "HARTONE,ZZITESTSJM",
+	"_links": {
+		"allergy_info_docs": {
+			"href": "https://10.0.100.107/v1/patients/389f64a3-f6b7-4c69-82b8-89a30bf3f0f8/allergy-info-docs"
+		},
+		"immunizations": {
+			"href": "https://10.0.100.107/v1/patients/389f64a3-f6b7-4c69-82b8-89a30bf3f0f8/immunizations"
+		},
+		"medications": {
+			"href": "https://10.0.100.107/v1/patients/389f64a3-f6b7-4c69-82b8-89a30bf3f0f8/medications"
+		},
+		"problems": {
+			"href": "https://10.0.100.107/v1/patients/389f64a3-f6b7-4c69-82b8-89a30bf3f0f8/problems"
+		},
+		"vitals": {
+			"href": "https://10.0.100.107/v1/patients/389f64a3-f6b7-4c69-82b8-89a30bf3f0f8/vitals"
+		},
+		"lab_tests": {
+			"href": "https://10.0.100.107/v1/patients/389f64a3-f6b7-4c69-82b8-89a30bf3f0f8/lab-tests"
+		},
+		"lab_test_reports": {
+			"href": "https://10.0.100.107/v1/patients/389f64a3-f6b7-4c69-82b8-89a30bf3f0f8/lab-test-reports"
+		},
+		"pathology_tests": {
+			"href": "https://10.0.100.107/v1/patients/389f64a3-f6b7-4c69-82b8-89a30bf3f0f8/pathology-tests"
+		},
+		"microbiology_tests": {
+			"href": "https://10.0.100.107/v1/patients/389f64a3-f6b7-4c69-82b8-89a30bf3f0f8/microbiology-tests"
+		},
+		"bloodbank_tests": {
+			"href": "https://10.0.100.107/v1/patients/389f64a3-f6b7-4c69-82b8-89a30bf3f0f8/bloodbank-tests"
+		},
+		"self": {
+			"href": "https://10.0.100.107/v1/patients/389f64a3-f6b7-4c69-82b8-89a30bf3f0f8"
+		}
+	},
+	"ssn": "121-22-1922",
+	"marital_status": "M",
+	"marital_status_displayable": "Married",
+	"first_name": "HARTONE",
+	"last_name": "ZZITESTSJM",
+	"home_phone": "427-850-9108",
+	"business_phone": "427-850-9108",
+	"phone_number": "427-850-9108",
+	"preferred_language": "English",
+	"hie_opt_out": true
+}, {
+	"uid": "c9f6c805-5160-4c17-a1ed-0235b70bead3",
+	"dob": "2013-02-15",
+	"sex": "F",
+	"address": {
+		"city": "",
+		"address1": "",
+		"state": "",
+		"zip": ""
+	},
+	"name": "HARTONE,ZZITESTSMM",
+	"_links": {
+		"allergy_info_docs": {
+			"href": "https://10.0.100.107/v1/patients/c9f6c805-5160-4c17-a1ed-0235b70bead3/allergy-info-docs"
+		},
+		"immunizations": {
+			"href": "https://10.0.100.107/v1/patients/c9f6c805-5160-4c17-a1ed-0235b70bead3/immunizations"
+		},
+		"medications": {
+			"href": "https://10.0.100.107/v1/patients/c9f6c805-5160-4c17-a1ed-0235b70bead3/medications"
+		},
+		"problems": {
+			"href": "https://10.0.100.107/v1/patients/c9f6c805-5160-4c17-a1ed-0235b70bead3/problems"
+		},
+		"vitals": {
+			"href": "https://10.0.100.107/v1/patients/c9f6c805-5160-4c17-a1ed-0235b70bead3/vitals"
+		},
+		"lab_tests": {
+			"href": "https://10.0.100.107/v1/patients/c9f6c805-5160-4c17-a1ed-0235b70bead3/lab-tests"
+		},
+		"lab_test_reports": {
+			"href": "https://10.0.100.107/v1/patients/c9f6c805-5160-4c17-a1ed-0235b70bead3/lab-test-reports"
+		},
+		"pathology_tests": {
+			"href": "https://10.0.100.107/v1/patients/c9f6c805-5160-4c17-a1ed-0235b70bead3/pathology-tests"
+		},
+		"microbiology_tests": {
+			"href": "https://10.0.100.107/v1/patients/c9f6c805-5160-4c17-a1ed-0235b70bead3/microbiology-tests"
+		},
+		"bloodbank_tests": {
+			"href": "https://10.0.100.107/v1/patients/c9f6c805-5160-4c17-a1ed-0235b70bead3/bloodbank-tests"
+		},
+		"self": {
+			"href": "https://10.0.100.107/v1/patients/c9f6c805-5160-4c17-a1ed-0235b70bead3"
+		}
+	},
+	"marital_status": "",
+	"marital_status_displayable": "",
+	"first_name": "HARTONE",
+	"last_name": "ZZITESTSMM",
+	"hie_opt_out": false
+}, {
+	"uid": "fd4c1075-c94d-441c-a277-5d6196d48735",
+	"dob": "1999-07-10",
+	"sex": "F",
+	"address": {
+		"city": "",
+		"address1": "",
+		"state": "",
+		"zip": ""
+	},
+	"name": "HARTONE,ZZITESTSYM",
+	"_links": {
+		"allergy_info_docs": {
+			"href": "https://10.0.100.107/v1/patients/fd4c1075-c94d-441c-a277-5d6196d48735/allergy-info-docs"
+		},
+		"immunizations": {
+			"href": "https://10.0.100.107/v1/patients/fd4c1075-c94d-441c-a277-5d6196d48735/immunizations"
+		},
+		"medications": {
+			"href": "https://10.0.100.107/v1/patients/fd4c1075-c94d-441c-a277-5d6196d48735/medications"
+		},
+		"problems": {
+			"href": "https://10.0.100.107/v1/patients/fd4c1075-c94d-441c-a277-5d6196d48735/problems"
+		},
+		"vitals": {
+			"href": "https://10.0.100.107/v1/patients/fd4c1075-c94d-441c-a277-5d6196d48735/vitals"
+		},
+		"lab_tests": {
+			"href": "https://10.0.100.107/v1/patients/fd4c1075-c94d-441c-a277-5d6196d48735/lab-tests"
+		},
+		"lab_test_reports": {
+			"href": "https://10.0.100.107/v1/patients/fd4c1075-c94d-441c-a277-5d6196d48735/lab-test-reports"
+		},
+		"pathology_tests": {
+			"href": "https://10.0.100.107/v1/patients/fd4c1075-c94d-441c-a277-5d6196d48735/pathology-tests"
+		},
+		"microbiology_tests": {
+			"href": "https://10.0.100.107/v1/patients/fd4c1075-c94d-441c-a277-5d6196d48735/microbiology-tests"
+		},
+		"bloodbank_tests": {
+			"href": "https://10.0.100.107/v1/patients/fd4c1075-c94d-441c-a277-5d6196d48735/bloodbank-tests"
+		},
+		"self": {
+			"href": "https://10.0.100.107/v1/patients/fd4c1075-c94d-441c-a277-5d6196d48735"
+		}
+	},
+	"marital_status": "",
+	"marital_status_displayable": "",
+	"first_name": "HARTONE",
+	"last_name": "ZZITESTSYM",
+	"hie_opt_out": false
+}]

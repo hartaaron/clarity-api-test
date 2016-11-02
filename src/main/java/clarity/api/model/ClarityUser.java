@@ -1,6 +1,6 @@
 package clarity.api.model;
 
-import clarity.api.util.GsonObjectMapper;
+import clarity.api.endpoints.access.UserAccess;
 import com.google.gson.annotations.Expose;
 
 public class ClarityUser extends ClarityModelObject
@@ -11,9 +11,8 @@ public class ClarityUser extends ClarityModelObject
 	@Expose
 	public String password;
 
-	public String user_id;
-	public String x_access_token;
-
+	public transient String role;
+	public transient UserAccess access;
 
 	public ClarityUser()
 	{
@@ -27,8 +26,8 @@ public class ClarityUser extends ClarityModelObject
 		this.password = password;
 	}
 
-	public Boolean hasToken()
+	public Boolean hasAccessToken()
 	{
-		return x_access_token != null;
+		return  access != null && access.token != null && access.user_id != null;
 	}
 }

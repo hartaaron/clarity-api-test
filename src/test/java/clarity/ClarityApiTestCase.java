@@ -4,7 +4,8 @@ import clarity.api.model.ClarityEnvironment;
 import clarity.api.model.ClarityUser;
 import clarity.api.unirest.UnirestClarityDriver;
 import clarity.api.util.GsonObjectMapper;
-import clarity.util.Logger;
+import clarity.util.ClarityLogger;
+import org.apache.logging.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.After;
 import org.junit.Before;
@@ -31,23 +32,25 @@ public class ClarityApiTestCase
 	@Before
 	public void beforeTest()
 	{
-		log = new Logger(this.getClass().getSimpleName() + " " + test.getMethodName());
-		log.write("========== START TEST ==========");
+		log = ClarityLogger.create(this.getClass().getSimpleName() + " " + test.getMethodName());
+		log.debug("========== START TEST ==========");
 
 		env = ClarityEnvironment.TEST;
-		log.write("env: " + env.name);
-		log.write("CLARITY_BASE_URL: " + env.CLARITY_BASE_URL);
+		log.debug("env: " + env.name);
+		log.debug("CLARITY_BASE_URL: " + env.CLARITY_BASE_URL);
 
 		validUser = new ClarityUser("clarity-external-testing@hart.com", "Cl@rity1");
-		log.write("validUser: " + validUser.toJson());
+		log.debug("validUser: " + validUser.toJson());
 
 		invalidUser = new ClarityUser("clarity-invalid-user@hart.com", "Cl@rity1");
-		log.write("invalidUser: " + invalidUser.toJson());
+		log.debug("invalidUser: " + invalidUser.toJson());
+		
+		clarity = new UnirestClarityDriver(env);
 	}
 
 	@After
 	public void afterTest()
 	{
-		log.write("========== END TEST ==========");
+		log.debug("========== END TEST ==========");
 	}
 }

@@ -1,9 +1,10 @@
 package clarity.api.unirest;
 
 import clarity.ClarityApiTestCase;
-import clarity.api.endpoints.patientsearch.PatientSearchItem;
+import clarity.api.endpoints.breakglass.BreakGlassReason;
 import clarity.api.model.ClarityPatient;
 import clarity.api.model.ClarityUser;
+import clarity.api.model.PatientAccess;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -28,11 +29,11 @@ public class UnirestClarityDriverTest extends ClarityApiTestCase
 
 		check.assertThat(clarity.user).isNotNull();
 
-		String user_id = clarity.user.user_id;
-		String x_access_token = clarity.user.x_access_token;
+		String user_id = clarity.user.access.user_id;
+		String x_access_token = clarity.user.access.token;
 
-		log.write("user_id: " + user_id);
-		log.write("x_access_token: " + x_access_token);
+		log.debug("user_id: " + user_id);
+		log.debug("x_access_token: " + x_access_token);
 
 		assertThat(user_id).isNotEmpty();
 		assertThat(x_access_token).isNotEmpty();
@@ -42,17 +43,28 @@ public class UnirestClarityDriverTest extends ClarityApiTestCase
 	public void should_search_for_patients() throws Exception
 	{
 		ClarityUser user = clarity.login(validUser);
-		clarity.setAccessToken(user.x_access_token);
 		
-		List<PatientSearchItem> patients = clarity.patientSearch("ZZITESTSJM,HARTONE");
+		List<ClarityPatient> patients = clarity.searchForPatients("ZZITESTSJM,HARTONE");
 		
 		assertThat(patients.size()).isEqualTo(1);
-		PatientSearchItem patient = patients.get(0);
+		ClarityPatient patient = patients.get(0);
 		
 		assertThat(patient.first_name).isEqualTo("HARTONE");
 		assertThat(patient.last_name).isEqualTo("ZZITESTSJM");
+	}
+	
+	@Test
+	public void should_break_glass() throws Exception
+	{
+		ClarityUser user = clarity.login(validUser);
 		
+		List<ClarityPatient> patients = clarity.searchForPatients("ZZITESTSJM,HARTONE");
+		assertThat(patients.size()).isEqualTo(1);
+		ClarityPatient patient = patients.get(0);
 		
+		PatientAccess access = clarity.breakGlass(patient, BreakGlassReason.DIRECT_PAT_CARE);
 		
+		System.out.println("bgToken: " + access.token);
+		assertThat(access.token).isNotEmpty();
 	}
 }

@@ -1,7 +1,7 @@
 package clarity.api.endpoints;
 
 import clarity.api.util.GsonObjectMapper;
-import clarity.util.Logger;
+import clarity.util.ClarityLogger;
 import clarity.api.model.ClarityEnvironment;
 import com.mashape.unirest.http.*;
 import com.mashape.unirest.http.exceptions.UnirestException;
@@ -10,6 +10,8 @@ import com.mashape.unirest.request.HttpRequestWithBody;
 
 import com.mashape.unirest.request.body.RequestBodyEntity;
 import org.apache.commons.io.IOUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -50,7 +52,9 @@ public abstract class ClarityEndpoint
 
 	public void init(ClarityEnvironment env, String path)
 	{
-		log = new Logger(this.getClass());
+		System.out.println(env);
+		
+		log = LogManager.getLogger(this);
 		gson = new GsonObjectMapper();
 
 		this.env = env;
@@ -177,8 +181,9 @@ public abstract class ClarityEndpoint
 			return URLEncoder.encode(s, encoding);
 		} catch (Exception e)
 		{
-			log.write("failed to encode string: " + s);
-			e.printStackTrace();
+			log.info("failed to encode string: " + s);
+			log.debug(e.getMessage());
+			log.debug(e.getStackTrace());
 			return s;
 		}
 	}

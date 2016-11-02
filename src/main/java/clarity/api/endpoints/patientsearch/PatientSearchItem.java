@@ -1,6 +1,7 @@
 package clarity.api.endpoints.patientsearch;
 
-import java.util.List;
+import clarity.api.model.Address;
+
 import java.util.Map;
 
 public class PatientSearchItem

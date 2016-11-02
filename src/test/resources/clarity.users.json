@@ -1,14 +1,12 @@
-{
-	"users" : {
-		"admin" : {
-			"username" : "bill.leung+test001@hart.com",
-			"password" : "Password1!",
-			"roles"    : "admin"
-		},
-		"basic" : {
-			"username" : "clarity-external-testing@hart.com",
-			"password" : "Cl@rity1",
-			"roles"    : "basic"
-		}
+[
+	{
+		"email" : "bill.leung+test001@hart.com",
+		"password" : "Password1!",
+		"role"    : "admin"
+	},
+	{
+		"email" : "clarity-external-testing@hart.com",
+		"password" : "Cl@rity1",
+		"role"    : "basic"
 	}
-}
+]
