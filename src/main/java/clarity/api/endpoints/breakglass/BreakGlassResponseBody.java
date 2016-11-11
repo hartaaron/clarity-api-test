@@ -1,6 +1,6 @@
 package clarity.api.endpoints.breakglass;
 
-import clarity.api.endpoints.JsonEntity;
+import clarity.api.model.JsonEntity;
 
 public class BreakGlassResponseBody extends JsonEntity<BreakGlassResponseBody>
 {

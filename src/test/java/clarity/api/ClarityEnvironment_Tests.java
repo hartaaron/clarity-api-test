@@ -1,8 +1,6 @@
 package clarity.api;
 
 
-import clarity.api.model.ClarityEnvironment;
-import clarity.api.steps.ClarityTestBase;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -25,14 +23,6 @@ public class ClarityEnvironment_Tests
 		ClarityEnvironment env = ClarityEnvironment.get(CLARITY_ENV);
 		
 		assertThat(env).isNotNull();
-		assertThat(env.CLARITY_BASE_URL).isEqualTo("https://clarity-tst.hart.com");
-	}
-	
-	@Test
-	public void should_get_clarity_environment_from_test_settings_file() throws IOException
-	{
-		ClarityTestBase clarity = new ClarityTestBase() {};
-		clarity.loadSettings();
-		
+		assertThat(env.baseUrl).isEqualTo("https://clarity-tst.hart.com");
 	}
 }

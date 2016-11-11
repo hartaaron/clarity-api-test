@@ -1,17 +1,47 @@
 group 'com.hart'
-version '1'
+version '1.1.0'
 
 apply plugin: 'java'
+apply plugin: 'idea'
 apply plugin: "com.github.samueltbrown.cucumber"
 
+dependencies {
+	// JUNIT
+	testCompile group: 'junit', name: 'junit', version: '4.12'
+
+	// ASSERTJ
+	testCompile 'org.assertj:assertj-core:3.5.2'
+
+	// CUCUMBER
+	testCompile 'info.cukes:cucumber-java:1.2.4'
+	testCompile 'info.cukes:cucumber-junit:1.2.4'
+
+	// PICOCONTAINER
+	compile group: 'org.picocontainer', name: 'picocontainer', version: '2.15'
+	compile group: 'info.cukes', name: 'cucumber-picocontainer', version: '1.2.4'
+
+	// UNIREST
+	compile group: 'com.mashape.unirest', name: 'unirest-java', version: '1.4.9'
+	compile group: 'commons-io', name: 'commons-io', version: '2.5'
+
+	// GSON
+	compile group: 'com.google.code.gson', name: 'gson', version: '2.7'
+
+	// LOG4J
+	compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.7'
+	compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.7'
+}
+
 repositories {
-    mavenCentral()
+	mavenLocal()
+	mavenCentral()
 	jcenter()
 }
 
 buildscript {
 	repositories {
 		mavenLocal()
+		mavenCentral()
 		jcenter()
 	}
 	dependencies {
@@ -20,46 +50,6 @@ buildscript {
 	}
 }
 
-dependencies {
-
-	// REST ASSURED
-	compile 'io.rest-assured:rest-assured:3.0.1'
-	compile 'io.rest-assured:json-path:3.0.1'
-	compile 'io.rest-assured:xml-path:3.0.1'
-	compile 'org.apache.commons:commons-lang3:3.4'
-
-	// UNIREST
-	compile group: 'com.mashape.unirest', name: 'unirest-java', version: '1.4.9'
-	compile group: 'commons-io', name: 'commons-io', version: '2.5'
-
-	// SERENITY BDD
-	compile group: 'net.serenity-bdd', name: 'serenity-gradle-plugin', version: '1.1.41'
-
-	/** ASSERTIONS **/
-	// ASSERTJ
-	testCompile 'org.assertj:assertj-core:3.5.2'
-
-	/** TEST FRAMEWORK **/
-	// TESTNG
-//	compile group: 'org.testng', name: 'testng', version: '6.9.13.6'
-
-	// JUNIT
-	testCompile group: 'junit', name: 'junit', version: '4.12'
-
-	// LOG4J
-	compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.7'
-	compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.7'
-
-	/** JSON **/
-	// GSON
-	compile group: 'com.google.code.gson', name: 'gson', version: '2.7'
-
-	//Cucumber
-	compile group: 'info.cukes', name: 'cucumber-jvm', version: '1.2.4', ext: 'pom'
-	compile group: 'info.cukes', name: 'cucumber-java', version: '1.2.4'
-	compile group: 'info.cukes', name: 'cucumber-testng', version: '1.1.5'
-	compile group: 'info.cukes', name: 'cucumber-junit', version: '1.2.4'
-}
 
 test {
 	systemProperty "CLARITY_USER_EMAIL", System.getProperty('CLARITY_USER_EMAIL')
@@ -84,23 +74,23 @@ test {
 	}
 }
 
-
 cucumber {
 	formats = ['pretty', 'html:target/cucumber', 'json:target/cucumber.json']
-	glueDirs = ['clarity.api.env', 'clarity.api.hooks', 'clarity.api.steps']
 	featureDirs = ['src/cucumber/resources/features']
+	glueDirs = ['clarity.api.hooks', 'clarity.api.steps']
 
-//	tags = [ System.getProperty('tags') ] ;
+	def CUCUMBER_TAGS = System.getProperty('CUCUMBER_TAGS') ?: ''
+	println "CUCUMBER_TAGS: " + CUCUMBER_TAGS
+	tags = [ CUCUMBER_TAGS ]
+//    tags = ['@Login, @PatientSearch, @Users, @Demographics, @Charts']
 
 	monochrome = false
 	strict = false
 	dryRun = false
 	ignoreFailures = false
 
-//	jvmOptions {
-//		maxHeapSize = '1024'
-//		environment 'ENV', 'CLARITY-TST'
-//	}
+	jvmOptions {
+//        maxHeapSize = '512m'
+	}
 }
-
 

@@ -1,8 +1,8 @@
 package clarity;
 
-import clarity.api.model.ClarityEnvironment;
+import clarity.api.ClarityEnvironment;
+import clarity.api.driver.UnirestClarityDriver;
 import clarity.api.model.ClarityUser;
-import clarity.api.unirest.UnirestClarityDriver;
 import clarity.api.util.GsonObjectMapper;
 import clarity.util.ClarityLogger;
 import org.apache.logging.log4j.Logger;
@@ -37,7 +37,7 @@ public class ClarityApiTestCase
 
 		env = ClarityEnvironment.TEST;
 		log.debug("env: " + env.name);
-		log.debug("CLARITY_BASE_URL: " + env.CLARITY_BASE_URL);
+		log.debug("CLARITY_BASE_URL: " + env.baseUrl);
 
 		validUser = new ClarityUser("clarity-external-testing@hart.com", "Cl@rity1");
 		log.debug("validUser: " + validUser.toJson());
@@ -45,7 +45,7 @@ public class ClarityApiTestCase
 		invalidUser = new ClarityUser("clarity-invalid-user@hart.com", "Cl@rity1");
 		log.debug("invalidUser: " + invalidUser.toJson());
 		
-		clarity = new UnirestClarityDriver(env);
+		clarity = new UnirestClarityDriver();
 	}
 
 	@After

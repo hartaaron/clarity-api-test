@@ -2,7 +2,6 @@ package clarity.api.model;
 
 import clarity.api.model.chart.*;
 
-import javax.print.Doc;
 import java.util.Date;
 import java.util.List;
 

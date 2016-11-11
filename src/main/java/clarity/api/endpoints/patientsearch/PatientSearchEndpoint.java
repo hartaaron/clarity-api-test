@@ -1,9 +1,9 @@
 package clarity.api.endpoints.patientsearch;
 
-import clarity.api.util.UnirestPrinter;
+import clarity.api.ClarityEnvironment;
 import clarity.api.endpoints.ClarityEndpoint;
-import clarity.api.model.ClarityEnvironment;
 import clarity.api.model.ClarityPatient;
+import clarity.api.util.UnirestPrinter;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;

@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import org.apache.commons.io.IOUtils;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -18,7 +19,9 @@ import java.util.Properties;
 
 public class ClarityTestData
 {
-	Properties settings = new Properties() {{
+	public Properties settings;
+	
+	public static Properties DefaultSettings = new Properties() {{
 		put("CLARITY_ENVIRONMENTS_JSON", "clarity.environments.json");
 		put("CLARITY_USERS_JSON", "clarity.users.json");
 		put("CLARITY_PATIENTS_JSON", "clarity.patients.json");
@@ -30,24 +33,14 @@ public class ClarityTestData
 	
 	public ClarityTestData() throws IOException
 	{
+		this.settings = DefaultSettings;
 		loadTestData();
 	}
 	
 	public ClarityTestData(Properties settings) throws IOException
 	{
 		this.settings = settings;
-		
 		loadTestData();
-	}
-	
-	public ClarityUser getUser(String email)
-	{
-		if (users.containsKey(email))
-		{
-			return users.get(email);
-		}
-	
-		return null;
 	}
 	
 	public void loadTestData() throws IOException
@@ -56,80 +49,24 @@ public class ClarityTestData
 		loadPatients();
 	}
 	
-	public ClarityUser createUser(String email, String password)
-	{
-		ClarityUser user = new ClarityUser(email, password);
-		
-		//TODO: implement setup steps
-		
-		return user;
-	}
-	
-	public String loadJsonFromResource(String path) throws IOException
-	{
-		InputStream in = this.getClass().getResourceAsStream("/" + path);
-		String json = IOUtils.toString(in, Charset.defaultCharset());
-//		System.out.println("json: " + json);
-				
-		return json;
-	}
-	
 	public void loadUsers() throws IOException
 	{
-		loadUsers(settings.getProperty("CLARITY_USERS_JSON"));
-	}
-	
-	public List<ClarityUser> loadUsers(String resourcePath) throws IOException
-	{
-		String json = loadJsonFromResource(resourcePath);
-
-		Gson gson = new Gson();
-		Type CLARITY_USERS = new TypeToken<List<ClarityUser>>(){}.getType();
-		
-		List<ClarityUser> users = gson.fromJson(json, CLARITY_USERS);
-		
-		this.users = new HashMap<String, ClarityUser>();
-		for (ClarityUser user : users)
-		{
-			this.users.put(user.email, user);
-		}
-		return users;
-	}
-	
-	
-	public ClarityPatient getPatient(String lastName, String firstName, String birthDate)
-	{
-		ClarityPatient patient = null;
-		
-		if (patients.containsKey(lastName + firstName))
-		{
-			patient = patients.get(lastName + firstName);
-			//TODO: check birthDate;
-		}
-		
-		return patient;
+		users = LoadUsers(settings.getProperty("CLARITY_USERS_JSON"));
 	}
 	
 	public void loadPatients() throws IOException
 	{
-		loadPatients(settings.getProperty("CLARITY_PATIENTS_JSON"));
+		patients = LoadPatients(settings.getProperty("CLARITY_PATIENTS_JSON"));
 	}
 	
-	public List<ClarityPatient> loadPatients(String resourcePath) throws IOException
+	public ClarityUser getUser(String key)
 	{
-		String json = loadJsonFromResource(resourcePath);
-		
-		Gson gson = new Gson();
-		Type CLARITY_PATIENTS = new TypeToken<List<ClarityPatient>>(){}.getType();
-		List<ClarityPatient> patients = gson.fromJson(json, CLARITY_PATIENTS);
-		
-		this.patients = new HashMap<>();
-		for (ClarityPatient patient : patients) {
-			// use "last_name,first_name" as key
-			this.patients.put(patient.last_name + "," + patient.first_name, patient);
-		}
-		
-		return patients;
+		return users.get(key);
+	}
+	
+	public ClarityPatient getPatient(String key)
+	{
+		return patients.get(key);
 	}
 	
 	public ClarityPatientData getPatientData(ClarityPatient patient)
@@ -163,5 +100,71 @@ public class ClarityTestData
 			// use last_name + first_name as key
 			this.patients.put(patient.last_name + patient.first_name, patient);
 		}
+	}
+
+	public ClarityUser createUser(String email, String password)
+	{
+		ClarityUser user = new ClarityUser(email, password);
+		
+		//TODO: implement setup steps
+		
+		return user;
+	}
+	
+	// STATIC ACCESS
+	
+	public static ClarityTestData LoadTestData(Properties settings) throws IOException
+	{
+		return new ClarityTestData(settings);
+	}
+	
+	public static HashMap<String, ClarityEnvironment> LoadEnvironments(String resourcePath)
+	{
+		//TODO: implement LoadEnvironments
+		throw new NotImplementedException();
+	}
+	
+	public static HashMap<String, ClarityUser> LoadUsers(String resourcePath) throws IOException
+	{
+		String json = LoadJsonFromResource(resourcePath);
+		
+		Gson gson = new Gson();
+		Type CLARITY_USERS = new TypeToken<HashMap<String, ClarityUser>>(){}.getType();
+		
+		HashMap<String, ClarityUser> users = gson.fromJson(json, CLARITY_USERS);
+		
+		users = new HashMap<String, ClarityUser>();
+		
+		for (Map.Entry <String, ClarityUser> entry : users.entrySet())
+		{
+			users.put(entry.getKey(), entry.getValue());
+		}
+		return users;
+	}
+	
+	
+	public static HashMap<String, ClarityPatient> LoadPatients(String resourcePath) throws IOException
+	{
+		String json = LoadJsonFromResource(resourcePath);
+		
+		Gson gson = new Gson();
+		Type CLARITY_PATIENTS = new TypeToken<List<ClarityPatient>>(){}.getType();
+		List<ClarityPatient> patientList = gson.fromJson(json, CLARITY_PATIENTS);
+		
+		HashMap<String, ClarityPatient> patients = new HashMap<>();
+		for (ClarityPatient patient : patientList) {
+			// use "last_name,first_name" as key
+			patients.put(patient.last_name + "," + patient.first_name, patient);
+		}
+		
+		return patients;
+	}
+	
+	public static String LoadJsonFromResource(String path) throws IOException
+	{
+		InputStream in = ClarityTestData.class.getResourceAsStream("/" + path);
+		String json = IOUtils.toString(in, Charset.defaultCharset());
+		
+		return json;
 	}
 }

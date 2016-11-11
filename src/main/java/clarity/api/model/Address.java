@@ -1,8 +1,5 @@
 package clarity.api.model;
 
-import clarity.api.endpoints.JsonEntity;
-import clarity.api.endpoints.patientsearch.PatientSearchResult;
-
 public class Address extends JsonEntity<Address>
 {
 	public String address1;

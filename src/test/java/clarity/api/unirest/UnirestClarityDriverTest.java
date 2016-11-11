@@ -1,6 +1,7 @@
 package clarity.api.unirest;
 
 import clarity.ClarityApiTestCase;
+import clarity.api.driver.UnirestClarityDriver;
 import clarity.api.endpoints.breakglass.BreakGlassReason;
 import clarity.api.model.ClarityPatient;
 import clarity.api.model.ClarityUser;
@@ -19,7 +20,7 @@ public class UnirestClarityDriverTest extends ClarityApiTestCase
 	@Before
 	public void setUp()
 	{
-		clarity = new UnirestClarityDriver(env);
+		clarity = new UnirestClarityDriver();
 	}
 
 	@Test
@@ -29,8 +30,8 @@ public class UnirestClarityDriverTest extends ClarityApiTestCase
 
 		check.assertThat(clarity.user).isNotNull();
 
-		String user_id = clarity.user.access.user_id;
-		String x_access_token = clarity.user.access.token;
+		String user_id = clarity.user.accessToken.user_id;
+		String x_access_token = clarity.user.accessToken.token;
 
 		log.debug("user_id: " + user_id);
 		log.debug("x_access_token: " + x_access_token);
@@ -40,11 +41,11 @@ public class UnirestClarityDriverTest extends ClarityApiTestCase
 	}
 	
 	@Test
-	public void should_search_for_patients() throws Exception
+	public void should_search_for_patient() throws Exception
 	{
 		ClarityUser user = clarity.login(validUser);
 		
-		List<ClarityPatient> patients = clarity.searchForPatients("ZZITESTSJM,HARTONE");
+		List<ClarityPatient> patients = clarity.searchForPatient("ZZITESTSJM,HARTONE");
 		
 		assertThat(patients.size()).isEqualTo(1);
 		ClarityPatient patient = patients.get(0);
@@ -58,7 +59,7 @@ public class UnirestClarityDriverTest extends ClarityApiTestCase
 	{
 		ClarityUser user = clarity.login(validUser);
 		
-		List<ClarityPatient> patients = clarity.searchForPatients("ZZITESTSJM,HARTONE");
+		List<ClarityPatient> patients = clarity.searchForPatient("ZZITESTSJM,HARTONE");
 		assertThat(patients.size()).isEqualTo(1);
 		ClarityPatient patient = patients.get(0);
 		

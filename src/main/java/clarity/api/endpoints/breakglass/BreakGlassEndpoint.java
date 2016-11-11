@@ -1,7 +1,7 @@
 package clarity.api.endpoints.breakglass;
 
+import clarity.api.ClarityEnvironment;
 import clarity.api.endpoints.ClarityEndpoint;
-import clarity.api.model.ClarityEnvironment;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.exceptions.UnirestException;
 

@@ -1,13 +1,11 @@
 package clarity.api.endpoints.patientsearch;
 
-import clarity.api.endpoints.JsonEntity;
 import clarity.api.model.ClarityPatient;
-import com.google.common.reflect.TypeToken;
+import clarity.api.model.JsonEntity;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.stream.JsonReader;
+import com.google.gson.reflect.TypeToken;
 
-import java.io.StringReader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;

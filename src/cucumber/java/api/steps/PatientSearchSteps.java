@@ -1,28 +1,28 @@
-package clarity.api.steps;
+package api.steps;
 
+import clarity.api.driver.UnirestClarityDriver;
 import clarity.api.model.ClarityPatient;
 import clarity.api.model.ClarityUser;
-import clarity.util.ClarityLogger;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
-import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
-import java.io.IOException;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class PatientSearchSteps extends ClarityTestBase
+
+public class PatientSearchSteps extends ClarityStepsBase
 {
-	@Before
-	public void setup(Scenario scenario) throws IOException
+	String patientSearchString;
+	ClarityUser user;
+	List<ClarityPatient> patients;
+	
+	public PatientSearchSteps(UnirestClarityDriver clarity)
 	{
-		log = ClarityLogger.create(this);
-		log.debug("SCENARIO: " + scenario.getName());
-		clarity = setupEnvironment();
+		super(clarity);
 	}
 	
 	@Given("^I am logged in to Clarity$")
@@ -30,20 +30,20 @@ public class PatientSearchSteps extends ClarityTestBase
 	{
 		log.debug("GIVEN: I am logged in to clarity");
 		
-		ClarityUser intendedUser = getUser("clarity-external-testing@hart.com", "Cl@rity1");
-		user = clarity.login(intendedUser);
-
-		log.debug("user: " + user.toJson());
-		assertThat(user.access.token).isNotNull();
+		clarity.login(VALID_USER);
+		user = clarity.login(clarity.data.getUser("basic"));
+		
+		log.debug("user: " + clarity.user.toJson());
+		assertThat(clarity.user.accessToken).isNotNull();
 	}
-
+	
 	@When("^I search for patient \"([^\"]*)\"$")
 	public void i_search_for_patient(String patientSearchString) throws Throwable
 	{
 		log.debug("WHEN: I search for patient " + patientSearchString);
 		
 		this.patientSearchString = patientSearchString;
-		patients = clarity.searchForPatients(patientSearchString);
+		patients = clarity.searchForPatient(patientSearchString);
 	}
 	
 	
@@ -54,7 +54,7 @@ public class PatientSearchSteps extends ClarityTestBase
 		
 		log.debug("patientSearchString: " + patientSearchString);
 		
-		patients = clarity.searchForPatients(lastName, firstName, birthDate);
+		patients = clarity.searchForPatient(lastName, firstName, birthDate);
 	}
 	
 	
@@ -71,7 +71,7 @@ public class PatientSearchSteps extends ClarityTestBase
 		assertThat(patientSearchString).contains(patient.first_name);
 		assertThat(patientSearchString).contains(patient.last_name);
 	}
-
+	
 	@Then("^I get that patient in the patient list$")
 	public void i_get_the_patient_list() throws Throwable
 	{

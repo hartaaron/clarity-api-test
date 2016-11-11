@@ -1,7 +1,5 @@
 package clarity.api.model;
 
-import clarity.api.endpoints.JsonEntity;
-import clarity.api.endpoints.patientsearch.*;
 
 import java.util.Map;
 

@@ -28,7 +28,7 @@ public class BreakGlassEndpoint_Test  extends ClarityApiTestCase
 		
 		System.out.println(user.toJson());
 		
-		List<ClarityPatient> patients = clarity.searchForPatients("ZZITESTSJM", "HARTONE");
+		List<ClarityPatient> patients = clarity.searchForPatient("ZZITESTSJM", "HARTONE");
 		patient = patients.get(0);
 		
 		System.out.println(patient.toJson());
@@ -47,7 +47,7 @@ public class BreakGlassEndpoint_Test  extends ClarityApiTestCase
 		
 		BreakGlassRequestBody bg = new BreakGlassRequestBody();
 		bg.record_id = patient.uid;
-		bg.requestor = user.access.user_id;
+		bg.requestor = user.accessToken.token;
 		bg.reason = "DIRECT_PAT_CARE";
 		bg.other_reason = "";
 		bg.access_data_type = "PATIENT_INFO";

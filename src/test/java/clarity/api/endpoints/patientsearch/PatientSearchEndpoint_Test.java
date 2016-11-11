@@ -1,11 +1,10 @@
 package clarity.api.endpoints.patientsearch;
 
 import clarity.ClarityApiTestCase;
-import clarity.api.model.ClarityEnvironment;
+import clarity.api.ClarityEnvironment;
 import clarity.api.model.ClarityPatient;
 import clarity.api.model.ClarityUser;
-import clarity.api.unirest.UnirestClarityDriver;
-import com.google.gson.internal.LinkedTreeMap;
+import clarity.api.driver.UnirestClarityDriver;
 import com.mashape.unirest.http.HttpResponse;
 import org.junit.Before;
 import org.junit.Test;
@@ -48,11 +47,10 @@ public class PatientSearchEndpoint_Test extends ClarityApiTestCase
 	public void should_get_response() throws Exception
 	{
 		endpoint = new PatientSearchEndpoint(env);
-		
-		clarity = new UnirestClarityDriver(env);
+		clarity = new UnirestClarityDriver();
 		user = clarity.login(validUser);
 		
-		endpoint.setAccessToken(user.access.token);
+		endpoint.setAccessToken(user.accessToken.token);
 //		endpoint.setQueryString("size=100&q=ZZITESTSJM");
 		
 		HttpResponse<String> response = endpoint.send("size=10&q=ZZITESTSJM,HARTONE");
@@ -74,11 +72,11 @@ public class PatientSearchEndpoint_Test extends ClarityApiTestCase
 	@Test
 	public void  should_have_patient_info_in_response() throws Exception
 	{
-		clarity = new UnirestClarityDriver(env);
+		clarity = new UnirestClarityDriver();
 		user = clarity.login(validUser);
 		
 		endpoint = new PatientSearchEndpoint(env);
-		endpoint.setAccessToken(user.access.token);
+		endpoint.setAccessToken(user.accessToken.token);
 		
 		endpoint.setQueryString("?size=10&q=ZZITESTSJM,HARTONE");
 		

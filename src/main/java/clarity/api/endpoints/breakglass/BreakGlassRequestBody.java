@@ -1,9 +1,6 @@
 package clarity.api.endpoints.breakglass;
 
-import clarity.api.endpoints.JsonEntity;
-import clarity.api.model.ClarityPatient;
-import clarity.api.model.ClarityUser;
-import org.openqa.jetty.html.Break;
+import clarity.api.model.JsonEntity;
 
 public class BreakGlassRequestBody extends JsonEntity<BreakGlassRequestBody>
 {
