@@ -1,6 +1,6 @@
 package clarity.api.endpoints.patientsearch;
 
-import clarity.api.UnirestPrinter;
+import clarity.api.util.UnirestPrinter;
 import clarity.api.endpoints.ClarityEndpoint;
 import clarity.api.model.ClarityEnvironment;
 import clarity.api.model.ClarityPatient;
@@ -8,8 +8,6 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import com.mashape.unirest.request.HttpRequest;
-
-import java.util.HashMap;
 
 public class PatientSearchEndpoint extends ClarityEndpoint
 {

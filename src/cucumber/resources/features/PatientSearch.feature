@@ -1,7 +1,6 @@
 @PatientSearch
 Feature: PatientSearch
 
-
   @Bug
   Scenario: Patient name should have lastname first
 

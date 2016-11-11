@@ -2,7 +2,7 @@ package clarity.api.endpoints;
 
 import com.google.gson.annotations.Expose;
 
-public class ClarityResponseBody extends JsonEntity<ClarityResponseBody>
+public class ClarityResponseWithStatus extends JsonEntity<ClarityResponseWithStatus>
 {
 	@Expose
 	public Boolean success;

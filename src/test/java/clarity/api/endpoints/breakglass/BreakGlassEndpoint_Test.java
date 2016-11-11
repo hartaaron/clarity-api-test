@@ -1,7 +1,7 @@
 package clarity.api.endpoints.breakglass;
 
 import clarity.ClarityApiTestCase;
-import clarity.api.UnirestPrinter;
+import clarity.api.util.UnirestPrinter;
 import clarity.api.model.ClarityPatient;
 import clarity.api.model.ClarityUser;
 import com.mashape.unirest.http.HttpResponse;

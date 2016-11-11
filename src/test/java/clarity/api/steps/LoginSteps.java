@@ -23,7 +23,7 @@ public class LoginSteps extends ClarityTestBase
 	public void setup(Scenario scenario) throws IOException
 	{
 		log = ClarityLogger.create(this);
-		log.debug("STATUS: " + scenario.getStatus());
+		log.debug("SCENARIO: " + scenario.getName());
 		clarity = setupEnvironment();
 	}
 	
@@ -46,6 +46,10 @@ public class LoginSteps extends ClarityTestBase
 		assertThat(user.access.token).isNotEmpty();
 	}
 	
-
+	@After
+	public void after(Scenario scenario)
+	{
+		log.debug("STATUS: " + scenario.getStatus());
+	}
 
 }

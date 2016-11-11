@@ -13,7 +13,7 @@ import static org.junit.Assert.fail;
 public class ClarityTestData_Tests
 {
 	@Test
-	public void should_load_users()
+	public void should_load_users() throws Exception
 	{
 		ClarityTestData data = new ClarityTestData();
 		
@@ -27,7 +27,7 @@ public class ClarityTestData_Tests
 	}
 	
 	@Test
-	public void should_load_patients()
+	public void should_load_patients() throws Exception
 	{
 		ClarityTestData data = new ClarityTestData();
 		

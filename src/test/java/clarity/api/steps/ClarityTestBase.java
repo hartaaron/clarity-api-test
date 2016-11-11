@@ -17,15 +17,17 @@ public abstract class ClarityTestBase
 {
 	protected Scenario scenario;
 	protected Logger log;
-	
 	protected Properties settings;
+	
 	protected ClarityEnvironment env;
 	protected UnirestClarityDriver clarity;
 	protected ClarityTestData data;
 	
 	protected ClarityUser user;
 	protected ClarityPatient patient;
-	protected List<ClarityPatient> clarityPatients;
+	protected List<ClarityPatient> patients;
+	protected String patientSearchString;
+	
 	
 	public Properties loadSettings() throws IOException
 	{
@@ -62,22 +64,34 @@ public abstract class ClarityTestBase
 	{
 		log.debug("setupEnvironment");
 		
-		loadSettings();
+		settings = loadSettings();
+		env = getEnv();
+		clarity = new UnirestClarityDriver(env);
+		data = new ClarityTestData(settings);
 		
+		return clarity;
+	}
+	
+	public ClarityEnvironment getEnv()
+	{
 		String CLARITY_ENV = settings.getProperty("CLARITY_ENV");
 		if (CLARITY_ENV == null) { throw new RuntimeException("must set property CLARITY_ENV "); }
 		
 		env = ClarityEnvironment.get(CLARITY_ENV);
 		log.info("CLARITY_ENV: " + env.name);
 		
-		clarity = new UnirestClarityDriver(env);
-		return clarity;
+		return env;
 	}
 	
 	public ClarityUser getUser(String email, String password)
 	{
+		log.debug("==============in getUser");
+		log.debug("data: " + data);
+		
 		ClarityUser user = data.getUser(email);
-
+		
+		log.debug("user: " + user);
+		
 		if (user == null) {
 			user = new ClarityUser();
 			user.email = email;

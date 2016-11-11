@@ -18,17 +18,26 @@ import java.util.Properties;
 
 public class ClarityTestData
 {
-	Properties settings;
+	Properties settings = new Properties() {{
+		put("CLARITY_ENVIRONMENTS_JSON", "clarity.environments.json");
+		put("CLARITY_USERS_JSON", "clarity.users.json");
+		put("CLARITY_PATIENTS_JSON", "clarity.patients.json");
+	}};
+	
 	Map<String, ClarityUser> users;
 	Map<String, ClarityPatient> patients;
 	Map<ClarityPatient, ClarityPatientData> patientData;
 	
-	public ClarityTestData()
-	{}
+	public ClarityTestData() throws IOException
+	{
+		loadTestData();
+	}
 	
-	public ClarityTestData(Properties settings)
+	public ClarityTestData(Properties settings) throws IOException
 	{
 		this.settings = settings;
+		
+		loadTestData();
 	}
 	
 	public ClarityUser getUser(String email)
@@ -39,6 +48,12 @@ public class ClarityTestData
 		}
 	
 		return null;
+	}
+	
+	public void loadTestData() throws IOException
+	{
+		loadUsers();
+		loadPatients();
 	}
 	
 	public ClarityUser createUser(String email, String password)
@@ -54,14 +69,14 @@ public class ClarityTestData
 	{
 		InputStream in = this.getClass().getResourceAsStream("/" + path);
 		String json = IOUtils.toString(in, Charset.defaultCharset());
-		System.out.println("json: " + json);
+//		System.out.println("json: " + json);
 				
 		return json;
 	}
 	
 	public void loadUsers() throws IOException
 	{
-		loadUsers(settings.getProperty("clarity.users.json"));
+		loadUsers(settings.getProperty("CLARITY_USERS_JSON"));
 	}
 	
 	public List<ClarityUser> loadUsers(String resourcePath) throws IOException
@@ -97,7 +112,7 @@ public class ClarityTestData
 	
 	public void loadPatients() throws IOException
 	{
-		loadPatients(settings.getProperty("clarity.patients.json"));
+		loadPatients(settings.getProperty("CLARITY_PATIENTS_JSON"));
 	}
 	
 	public List<ClarityPatient> loadPatients(String resourcePath) throws IOException

@@ -1,7 +1,7 @@
 package clarity.api.endpoints.access;
 
 import clarity.ClarityApiTestCase;
-import clarity.api.endpoints.ClarityResponseBody;
+import clarity.api.endpoints.ClarityResponseWithStatus;
 import clarity.api.model.ClarityUser;
 import com.mashape.unirest.http.HttpResponse;
 import org.junit.Before;
@@ -41,7 +41,7 @@ public class AccessEndpoint_Test extends ClarityApiTestCase
 		check.assertThat(response.getStatus()).isEqualTo(200);
 
 		String json = response.getBody();
-		ClarityResponseBody body = new ClarityResponseBody().fromJson(json);
+		ClarityResponseWithStatus body = new ClarityResponseWithStatus().fromJson(json);
 
 		check.assertThat(body.success).isEqualTo(true);
 		check.assertThat(body.code).isEqualTo(200);
@@ -65,7 +65,7 @@ public class AccessEndpoint_Test extends ClarityApiTestCase
 		check.assertThat(response.getStatus()).isEqualTo(401);
 
 		String json = response.getBody();
-		ClarityResponseBody body = new ClarityResponseBody().fromJson(json);
+		ClarityResponseWithStatus body = new ClarityResponseWithStatus().fromJson(json);
 		check.assertThat(body.success).isEqualTo(false);
 		check.assertThat(body.code).isEqualTo(401);
 		check.assertThat(body.data).isEqualTo("401 Unauthorized");

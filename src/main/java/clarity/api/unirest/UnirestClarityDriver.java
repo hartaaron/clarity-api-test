@@ -1,7 +1,7 @@
 package clarity.api.unirest;
 
 import clarity.api.ClarityDriver;
-import clarity.api.endpoints.ClarityResponseBody;
+import clarity.api.endpoints.ClarityResponseWithStatus;
 import clarity.api.endpoints.access.AccessEndpoint;
 import clarity.api.endpoints.access.UserAccess;
 import clarity.api.endpoints.breakglass.BreakGlassEndpoint;
@@ -50,7 +50,7 @@ public class UnirestClarityDriver implements ClarityDriver
 	public UnirestClarityDriver(ClarityEnvironment env)
 	{
 		this.env = env;
-
+		
 		gson = new GsonObjectMapper();
 		Unirest.setObjectMapper(gson);
 
@@ -72,7 +72,7 @@ public class UnirestClarityDriver implements ClarityDriver
 		HttpResponse<String> response = accessEndpoint.send(user);
 
 		String json = response.getBody();
-		ClarityResponseBody result = new ClarityResponseBody().fromJson(json);
+		ClarityResponseWithStatus result = new ClarityResponseWithStatus().fromJson(json);
 
 		if (! result.success)
 		{
@@ -101,7 +101,7 @@ public class UnirestClarityDriver implements ClarityDriver
 	
 	public List<ClarityPatient> searchForPatients(ClarityPatient patient) throws Exception
 	{
-		if (userAccess != null && userAccess.isSet())
+		if (user.access == null || user.access.isSet() == false)
 		{
 			throw new RuntimeException("user must first login to set x-acccess-token");
 		}
@@ -119,7 +119,7 @@ public class UnirestClarityDriver implements ClarityDriver
 	
 	public List<ClarityPatient> searchForPatients(String lastName, String firstName, String birthDate) throws Exception
 	{
-		if (userAccess != null && userAccess.isSet())
+		if (user.access == null || user.access.isSet() == false)
 		{
 			throw new RuntimeException("user must first login to set x-acccess-token");
 		}
@@ -142,13 +142,13 @@ public class UnirestClarityDriver implements ClarityDriver
 	
 	public List<ClarityPatient> searchForPatients(String patientSearchString) throws UnirestException
 	{
-		if (userAccess != null && userAccess.isSet())
+		if (user.access == null || user.access.isSet() == false)
 		{
 			throw new RuntimeException("user must first login to set x-acccess-token");
 		}
 		
 		PatientSearchEndpoint endpoint = new PatientSearchEndpoint(env);
-		endpoint.setAccessToken(userAccess.token);
+		endpoint.setAccessToken(user.access.token);
 		endpoint.setQueryString("size=100&q=" + endpoint.urlencode(patientSearchString));
 		
 		HttpResponse<String> response = endpoint.send();
@@ -164,7 +164,7 @@ public class UnirestClarityDriver implements ClarityDriver
 	
 	public PatientAccess breakGlass(String uid, BreakGlassReason reason, String other_reason) throws Exception
 	{
-		if (! userAccess.isSet())
+		if (user.access == null || user.access.isSet() == false)
 		{
 			throw new RuntimeException("x_access_access token must be set");
 		}
